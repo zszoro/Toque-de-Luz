@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brainrot Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1b1b2f;
+      color: white;
+    }
+    header {
+      background: #a259ff;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      position: relative;
+    }
+    #cart-icon {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    main {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+    .product {
+      background: #2e2e4d;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .product h2 {
+      margin-top: 0;
+    }
+    .product-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .product-buttons button {
+      background: #a259ff;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .product-buttons button:disabled {
+      background: #777;
+      cursor: not-allowed;
+    }
+    #cart-panel {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 300px;
+      background: #222244;
+      height: calc(100% - 60px);
+      padding: 10px;
+      display: none;
+      overflow-y: auto;
+    }
+    .cart-item {
+      border-bottom: 1px solid #444;
+      padding: 5px 0;
+    }
+    #cart-total {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+    }
+    #cart-panel button.remove {
+      background: #ff5e5e;
+      border: none;
+      padding: 3px 8px;
+      border-radius: 5px;
+      margin-left: 5px;
+    }
+    @media (max-width: 600px) {
+      #cart-panel {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Brainrot Store
+    <div id="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+  </header>
+
+  <main id="product-list"></main>
+
+  <div id="cart-panel">
+    <h3>Seu Carrinho</h3>
+    <div id="cart-items"></div>
+    <div id="cart-total">Total: R$0,00</div>
+    <br>
+    <button onclick="sendCartOrder()">Finalizar Pedido</button>
+    <p id="cart-message" style="margin-top: 10px;"></p>
+  </div>
+
+  <script>
+    const products = [
+      { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1 },
+      { name: "Chimpanzini Spiderini", price: 3, stock: 0 },
+      { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0 },
+      { name: "Los Tralaleritos", price: 4, stock: 0 },
+      { name: "Las Tralaleritas", price: 5, stock: 0 },
+      { name: "Graipuss Medussi", price: 5, stock: 0 },
+      { name: "Pot Hotspot", price: 10, stock: 0 },
+      { name: "La Grande Combinasion", price: 19, stock: 0 },
+      { name: "Nuclearo Dinosauro", price: 30, stock: 0 },
+      { name: "Garama and Madundung", price: 40, stock: 0 },
+    ];
+
+    let cart = [];
+
+    function renderProducts() {
+      const list = document.getElementById('product-list');
+      list.innerHTML = '';
+      products.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `
+          <h2>${p.name} - R$${p.price.toFixed(2)}</h2>
+          <p style="color: ${p.stock > 0 ? 'white' : 'red'}">Estoque: ${p.stock}</p>
+          <div class="product-buttons">
+            <button ${p.stock === 0 ? 'disabled' : ''} onclick="buyNow(${i})">Comprar</button>
+            <button ${p.stock === 0 ? 'disabled' : ''} onclick="addToCart(${i})">Adicionar ao carrinho</button>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function toggleCart() {
+      const panel = document.getElementById('cart-panel');
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function updateCartUI() {
+      const cartItems = document.getElementById('cart-items');
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      document.getElementById('cart-count').textContent = cart.reduce((a, b) => a + b.qty, 0);
+      document.getElementById('cart-total').textContent = `Total: R$${total.toFixed(2)}`;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Seu carrinho está vazio.</p>';
+        return;
+      }
+
+      cartItems.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          ${item.name} x${item.qty} - R$${(item.price * item.qty).toFixed(2)}
+          <button class="remove" onclick="removeFromCart(${index})">X</button>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(index) {
+      const product = products[index];
+      const existing = cart.find(i => i.name === product.name);
+
+      if (existing) {
+        if (existing.qty < product.stock) {
+          existing.qty++;
+        } else {
+          alert('Estoque máximo atingido!');
+        }
+      } else {
+        if (product.stock > 0) {
+          cart.push({ name: product.name, price: product.price, qty: 1 });
+        } else {
+          alert('Produto sem estoque!');
+        }
+      }
+
+      updateCartUI();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function buyNow(index) {
+      const p = products[index];
+      if (p.stock > 0) {
+        alert(`Pedido de "${p.name}" feito! Pague R$${p.price.toFixed(2)} via PIX: 12992025025\nDepois, abra um ticket no Discord.`);
+        p.stock--;
+        renderProducts();
+      }
+    }
+
+    async function sendCartOrder() {
+      if (cart.length === 0) return;
+
+      const name = prompt("Digite seu nome:");
+      const discord = prompt("Digite seu Discord (opcional):");
+
+      const description = cart.map(item => `${item.name} x${item.qty} - R$${(item.price * item.qty).toFixed(2)}`).join("\\n");
+      const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
+
+      const webhookUrl = "https://discord.com/api/webhooks/1398173792718557235/CE5LlnTvohT8x5vXwJovasR8-psPnm1_1ewfVo_oLqY-sqypAwriqcK7DDQ0nKn-U6Kl";
+
+      const content = {
+        username: "Brainrot Store Bot",
+        embeds: [{
+          title: "Novo pedido via carrinho",
+          description,
+          color: 0xa259ff,
+          fields: [
+            { name: "Nome", value: name || "Não informado", inline: true },
+            { name: "Discord", value: discord || "Não informado", inline: true },
+            { name: "Total", value: `R$${total.toFixed(2)}`, inline: false },
+            { name: "PIX", value: "12992025025", inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        }]
+      };
+
+      try {
+        const res = await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(content)
+        });
+
+        const msg = document.getElementById('cart-message');
+        if (res.ok) {
+          msg.textContent = "✅ Pedido enviado! Abra um ticket no Discord após pagar via PIX.";
+          cart.forEach(item => {
+            const product = products.find(p => p.name === item.name);
+            if (product) product.stock -= item.qty;
+          });
+          cart = [];
+          updateCartUI();
+          renderProducts();
+        } else {
+          msg.textContent = "❌ Erro ao enviar pedido.";
+        }
+      } catch (e) {
+        document.getElementById('cart-message').textContent = "❌ Erro de conexão.";
+      }
+    }
+
+    renderProducts();
+    updateCartUI();
+  </script>
+</body>
+</html>ment.getElementById('cart-order-area').style.display = 'block';
+  document.getElementById('cart-panel').style.display = 'none';
+  document.getElementById('product-list').style.display = 'none';
+  document.getElementById('cart-message').textContent = '';
+  document.getElementById('cart-order-form').reset();
+}
+
+function closeCartOrderArea() {
+  document.getElementById('cart-order-area').style.display = 'none';
+  document.getElementById('product-list').style.display = 'block';
+}
+
+async function submitOrder(event) {
+  event.preventDefault();
+  const name = document.getElementById('order-name').value;
+  const discord = document.getElementById('order-discord').value;
+  const product = document.getElementById('order-product-name').textContent;
+  const price = document.getElementById('order-product-price').textContent;
+
+  const webhookUrl = "https://discord.com/api/webhooks/1398173792718557235/CE5LlnTvohT8x5vXwJovasR8-psPnm1_1ewfVo_oLqY-sqypAwriqcK7DDQ0nKn-U6Kl";
+
+  const content = {
+    username: "Brainrot Store Bot",
+    embeds: [{
+      title: "Novo pedido recebido",
+      color: 0xa259ff,
+      fields: [
+        { name: "Produto", value: product, inline: true },
+        { name: "Preço", value: `R$${price}`, inline: true },
+        { name: "Nome", value: name, inline: true },
+        { name: "Discord", value: discord || "Não informado", inline: true },
+        { name: "Pix chave", value: "12992025025", inline: false }
+      ],
+      timestamp: new Date().toISOString()
+    }]
+  };
+
+  try {
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(content)
+    });
+    if (response.ok) {
+      document.getElementById('message').textContent = "✅️ Seu pedido foi enviado para o suporte e agora está em análise. Se você pagou corretamente, abra um ticket em nosso Discord para resgatar.";
+      document.getElementById('order-form').reset();
+      closeOrderArea();
+    } else {
+      document.getElementById('message').textContent = "❌ Erro ao enviar pedido. Tente novamente.";
+    }
+  } catch (error) {
+    document.getElementById('message').textContent = "❌ Erro ao enviar pedido. Verifique sua conexão.";
+  }
+}
+
+async function submitCartOrder(event) {
+  event.preventDefault();
+  const name = document.getElementById('cart-name').value;
+  const discord = document.getElementById('cart-discord').value;
+
+  const webhookUrl = "https://discord.com/api/webhooks/1398173792718557235/CE5LlnTvohT8x5vXwJovasR8-psPnm1_1ewfVo_oLqY-sqypAwriqcK7DDQ0nKn-U6Kl";
+
+  let description = cart.map(i => `${i.name} x${i.qty} - R$${(i.price * i.qty).toFixed(2)}`).join('\n');
+  let total = cart.reduce((acc, i) => acc + i.price * i.qty, 0);
+
+  const content = {
+    username: "Brainrot Store Bot",
+    embeds: [{
+      title: "Novo pedido recebido (Carrinho)",
+      description,
+      color: 0xa259ff,
+      fields: [
+        { name: "Valor Total", value: `R$${total.toFixed(2)}`, inline: true },
+        { name: "Nome", value: name, inline: true },
+        { name: "Discord", value: discord || "Não informado", inline: true },
+        { name: "Pix chave", value: "12992025025", inline: false }
+      ],
+      timestamp: new Date().toISOString()
+    }]
+  };
+
+  try {
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(content)
+    });
+    const msgEl = document.getElementById('cart-message');
+    if (response.ok) {
+      msgEl.textContent = "✅️ Seu pedido foi enviado para o suporte e agora está em análise. Se você pagou corretamente, abra um ticket em nosso Discord para resgatar.";
+      cart = [];
+      updateCartUI();
+      document.getElementById('cart-order-form').reset();
+      closeCartOrderArea();
+    } else {
+      msgEl.textContent = "❌ Erro ao enviar pedido. Tente novamente.";
+    }
+  } catch (error) {
+    document.getElementById('cart-message').textContent = "❌ Erro ao enviar pedido. Verifique sua conexão.";
+  }
+}
+
+renderProducts();
+updateCartUI();
+</script>
+</body>
+</html>
