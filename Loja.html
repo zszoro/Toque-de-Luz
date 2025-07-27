@@ -79,23 +79,9 @@
       font-size: 1.1rem;
     }
 
-    #search-bar {
-      margin: 15px auto 5px;
-      text-align: center;
-    }
-
-    #search-input {
-      padding: 10px;
-      width: 90%;
-      max-width: 400px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
     main {
       max-width: 700px;
-      margin: 10px auto;
+      margin: 20px auto;
       padding: 0 10px;
     }
 
@@ -189,11 +175,7 @@
   <div id="category-form">
     <button onclick="playClickSound(); filterByCategory('brainrot')">🧠 Brainrot</button>
     <button onclick="playClickSound(); filterByCategory('grow')">🌱 Grow a Garden</button>
-    <button onclick="playClickSound(); filterByCategory('discord')">💬 Discord</button>
-  </div>
-
-  <div id="search-bar">
-    <input type="text" id="search-input" placeholder="Pesquisar produto..." oninput="renderProducts()" />
+    <button onclick="playClickSound(); filterByCategory('blox')">🌀 Blox Fruits</button>
   </div>
 
   <main id="product-list"></main>
@@ -222,6 +204,7 @@
     }
 
     const products = [
+      // Brainrot
       { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1, category: "brainrot" },
       { name: "Chimpanzini Spiderini", price: 3, stock: 0, category: "brainrot" },
       { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0, category: "brainrot" },
@@ -232,8 +215,13 @@
       { name: "La Grande Combinasion", price: 19, stock: 0, category: "brainrot" },
       { name: "Nuclearo Dinosauro", price: 30, stock: 0, category: "brainrot" },
       { name: "Garama and Madundung", price: 40, stock: 0, category: "brainrot" },
-      { name: "Cacto Mágico", price: 5, stock: 2, category: "grow" },
-      { name: "Link do Discord Premium", price: 10, stock: 99, category: "discord" }
+
+      // Grow a Garden
+      { name: "Raccon", price: 29.99, stock: 3, category: "grow" },
+      { name: "???", price: 7.00, stock: 1, category: "grow" },
+      { name: "Dragofly", price: 27.00, stock: 5, category: "grow" },
+      { name: "Butterfly", price: 23.00, stock: 2, category: "grow" },
+      { name: "Disco-Bee", price: 30.00, stock: 1, category: "grow" }
     ];
 
     let cart = [];
@@ -241,32 +229,19 @@
 
     function filterByCategory(category) {
       activeCategory = category;
-      document.getElementById("search-input").value = "";
       renderProducts();
     }
 
     function renderProducts() {
       const list = document.getElementById('product-list');
-      const search = document.getElementById('search-input').value.toLowerCase();
       list.innerHTML = '';
-
-      const filtered = products.filter(p => {
-        const matchCategory = activeCategory ? p.category === activeCategory : true;
-        const matchSearch = p.name.toLowerCase().includes(search);
-        return matchCategory && matchSearch;
-      });
-
-      if (filtered.length === 0) {
-        list.innerHTML = '<p style="text-align:center;">Nenhum produto encontrado.</p>';
-        return;
-      }
-
+      const filtered = activeCategory ? products.filter(p => p.category === activeCategory) : products;
       filtered.forEach((p, i) => {
         const div = document.createElement('div');
         div.className = 'product';
         div.innerHTML = `
           <h2>${p.name} - R$${p.price.toFixed(2)}</h2>
-          <p style="color: ${p.stock > 0 ? 'white' : 'red'}">Estoque: ${p.stock}</p>
+          <p style="color: ${p.stock > 0 ? 'white' : 'red'}">📦 Estoque: ${p.stock}</p>
           <div class="product-buttons">
             <button ${p.stock === 0 ? 'disabled' : ''} onclick="playClickSound(); buyNow(${i})">Comprar</button>
             <button ${p.stock === 0 ? 'disabled' : ''} onclick="playClickSound(); addToCart(${i})">Adicionar ao carrinho</button>
@@ -303,7 +278,6 @@
     function addToCart(index) {
       const product = products[index];
       const existing = cart.find(i => i.name === product.name);
-
       if (existing) {
         if (existing.qty < product.stock) {
           existing.qty++;
@@ -317,7 +291,6 @@
           alert('Produto sem estoque!');
         }
       }
-
       updateCartUI();
     }
 
