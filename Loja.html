@@ -31,6 +31,12 @@
       gap: 10px;
     }
 
+    #home-icon {
+      text-decoration: none;
+      color: white;
+      font-size: 1.3rem;
+    }
+
     #menu-button {
       background: #a259ff;
       color: white;
@@ -39,12 +45,7 @@
       padding: 8px 12px;
       font-size: 1rem;
       cursor: pointer;
-    }
-
-    #home-icon {
-      text-decoration: none;
-      font-size: 1.3rem;
-      color: white;
+      z-index: 1000;
     }
 
     #cart-icon {
@@ -170,8 +171,8 @@
 <body>
   <header>
     <div id="top-left-controls">
-      <button id="menu-button" onclick="playClickSound(); toggleCategoryForm()">☰ Categorias</button>
       <a id="home-icon" href="index.html" onclick="playClickSound()">🏠</a>
+      <button id="menu-button" onclick="playClickSound(); toggleCategoryForm()">☰ Categorias</button>
     </div>
     ZS Store
     <div id="cart-icon" onclick="playClickSound(); toggleCart()">🛒 Carrinho <span id="cart-count">0</span></div>
