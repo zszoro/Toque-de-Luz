@@ -28,7 +28,12 @@
       align-items: center;
       gap: 10px;
     }
-    #home-icon, #discord-icon {
+    #home-icon {
+      font-size: 1.3rem;
+      color: white;
+      text-decoration: none;
+    }
+    #discord-icon {
       font-size: 1.3rem;
       color: white;
       text-decoration: none;
@@ -72,9 +77,33 @@
       font-size: 1.1rem;
     }
     main {
-      max-width: 700px;
+      max-width: 900px;
       margin: 20px auto;
       padding: 0 10px;
+    }
+    .category-preview {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .category-box {
+      background: #1a1a1a;
+      border: 2px solid #a259ff;
+      border-radius: 10px;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+      width: 200px;
+      transition: transform 0.2s;
+    }
+    .category-box:hover {
+      transform: scale(1.03);
+    }
+    .category-box img {
+      width: 100%;
+      border-radius: 8px;
     }
     .product {
       background: #1a1a1a;
@@ -157,10 +186,25 @@
   <div id="category-form">
     <button onclick="playClickSound(); filterByCategory('brainrot')">🧠 Brainrot</button>
     <button onclick="playClickSound(); filterByCategory('grow')">🌱 Grow a Garden</button>
-    <button onclick="playClickSound(); filterByCategory('blox')">🍍 Blox Fruits (em breve)</button>
+    <button onclick="playClickSound(); filterByCategory('blox')">🍍 Blox Fruits</button>
   </div>
 
-  <main id="product-list"></main>
+  <main id="product-list">
+    <div class="category-preview" id="category-preview">
+      <div class="category-box" onclick="playClickSound(); filterByCategory('brainrot')">
+        <img src="https://via.placeholder.com/200x150.png?text=Brainrot" alt="Brainrot" />
+        <h3>🧠 Brainrot</h3>
+      </div>
+      <div class="category-box" onclick="playClickSound(); filterByCategory('grow')">
+        <img src="https://via.placeholder.com/200x150.png?text=Grow+a+Garden" alt="Grow a Garden" />
+        <h3>🌱 Grow a Garden</h3>
+      </div>
+      <div class="category-box" onclick="playClickSound(); filterByCategory('blox')">
+        <img src="https://via.placeholder.com/200x150.png?text=Blox+Fruits" alt="Blox Fruits" />
+        <h3>🍍 Blox Fruits <small style="color: #aaa">(em breve)</small></h3>
+      </div>
+    </div>
+  </main>
 
   <div id="cart-panel">
     <h3>Seu Carrinho</h3>
@@ -187,21 +231,11 @@
 
     const products = [
       { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1, category: "brainrot" },
-      { name: "Chimpanzini Spiderini", price: 3, stock: 0, category: "brainrot" },
-      { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0, category: "brainrot" },
-      { name: "Los Tralaleritos", price: 4, stock: 0, category: "brainrot" },
-      { name: "Las Tralaleritas", price: 5, stock: 0, category: "brainrot" },
-      { name: "Graipuss Medussi", price: 5, stock: 0, category: "brainrot" },
-      { name: "Pot Hotspot", price: 10, stock: 0, category: "brainrot" },
-      { name: "La Grande Combinasion", price: 19, stock: 0, category: "brainrot" },
-      { name: "Nuclearo Dinosauro", price: 30, stock: 0, category: "brainrot" },
-      { name: "Garama and Madundung", price: 40, stock: 0, category: "brainrot" },
-
+      { name: "Cacto Mágico", price: 5, stock: 2, category: "grow" },
       { name: "Raccon", price: 29.99, stock: 3, category: "grow" },
-      { name: "Valor: R$7,00", price: 7, stock: 1, category: "grow" },
       { name: "Dragofly", price: 27, stock: 5, category: "grow" },
       { name: "Butterfly", price: 23, stock: 2, category: "grow" },
-      { name: "Disco-Bee", price: 30, stock: 1, category: "grow" }
+      { name: "Disco-Bee", price: 30, stock: 1, category: "grow" },
     ];
 
     let cart = [];
@@ -217,16 +251,13 @@
       list.innerHTML = '';
 
       if (!activeCategory) {
-        list.innerHTML = '<p style="text-align:center; color:#888; font-size:1.2rem; margin-top:40px;">👈 Escolha uma categoria para ver os produtos</p>';
+        document.getElementById('category-preview').style.display = 'flex';
         return;
+      } else {
+        document.getElementById('category-preview').style.display = 'none';
       }
 
       const filtered = products.filter(p => p.category === activeCategory);
-      if (filtered.length === 0) {
-        list.innerHTML = '<p style="text-align:center; color:#999;">Nenhum produto encontrado para essa categoria.</p>';
-        return;
-      }
-
       filtered.forEach((p, i) => {
         const div = document.createElement('div');
         div.className = 'product';
@@ -353,8 +384,8 @@
       }
     }
 
-    renderProducts();
     updateCartUI();
+    renderProducts();
   </script>
 </body>
 </html>
