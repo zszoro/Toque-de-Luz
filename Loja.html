@@ -31,7 +31,7 @@
       gap: 10px;
     }
 
-    #home-icon {
+    #home-icon, #discord-icon {
       font-size: 1.3rem;
       color: white;
       text-decoration: none;
@@ -166,6 +166,7 @@
   <header>
     <div id="top-left-controls">
       <a id="home-icon" href="index.html" onclick="playClickSound()">🏠</a>
+      <a id="discord-icon" href="https://discord.com/widget?id=1388350454995484693&theme=dark" target="_blank" onclick="playClickSound()">💬</a>
       <button id="menu-button" onclick="playClickSound(); toggleCategoryForm()">☰ Categorias</button>
     </div>
     ZS Store
@@ -175,7 +176,7 @@
   <div id="category-form">
     <button onclick="playClickSound(); filterByCategory('brainrot')">🧠 Brainrot</button>
     <button onclick="playClickSound(); filterByCategory('grow')">🌱 Grow a Garden</button>
-    <button onclick="playClickSound(); filterByCategory('blox')">🌀 Blox Fruits</button>
+    <button onclick="playClickSound(); filterByCategory('bloxfruits')">🍩 Blox Fruits (em breve)</button>
   </div>
 
   <main id="product-list"></main>
@@ -204,24 +205,11 @@
     }
 
     const products = [
-      // Brainrot
       { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1, category: "brainrot" },
-      { name: "Chimpanzini Spiderini", price: 3, stock: 0, category: "brainrot" },
-      { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0, category: "brainrot" },
-      { name: "Los Tralaleritos", price: 4, stock: 0, category: "brainrot" },
-      { name: "Las Tralaleritas", price: 5, stock: 0, category: "brainrot" },
-      { name: "Graipuss Medussi", price: 5, stock: 0, category: "brainrot" },
-      { name: "Pot Hotspot", price: 10, stock: 0, category: "brainrot" },
-      { name: "La Grande Combinasion", price: 19, stock: 0, category: "brainrot" },
-      { name: "Nuclearo Dinosauro", price: 30, stock: 0, category: "brainrot" },
-      { name: "Garama and Madundung", price: 40, stock: 0, category: "brainrot" },
-
-      // Grow a Garden
       { name: "Raccon", price: 29.99, stock: 3, category: "grow" },
-      { name: "???", price: 7.00, stock: 1, category: "grow" },
       { name: "Dragofly", price: 27.00, stock: 5, category: "grow" },
       { name: "Butterfly", price: 23.00, stock: 2, category: "grow" },
-      { name: "Disco-Bee", price: 30.00, stock: 1, category: "grow" }
+      { name: "Disco-Bee", price: 30.00, stock: 1, category: "grow" },
     ];
 
     let cart = [];
@@ -278,6 +266,7 @@
     function addToCart(index) {
       const product = products[index];
       const existing = cart.find(i => i.name === product.name);
+
       if (existing) {
         if (existing.qty < product.stock) {
           existing.qty++;
@@ -291,6 +280,7 @@
           alert('Produto sem estoque!');
         }
       }
+
       updateCartUI();
     }
 
