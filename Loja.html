@@ -11,7 +11,6 @@
       background: #0c0c0c;
       color: #f2f2f2;
     }
-
     header {
       background: #a259ff;
       padding: 20px;
@@ -21,7 +20,6 @@
       position: relative;
       color: #fff;
     }
-
     #top-left-controls {
       position: absolute;
       left: 20px;
@@ -30,13 +28,14 @@
       align-items: center;
       gap: 10px;
     }
-
     #home-icon, #discord-icon {
       font-size: 1.3rem;
       color: white;
       text-decoration: none;
     }
-
+    #discord-icon {
+      margin-left: 5px;
+    }
     #menu-button {
       background: #a259ff;
       color: white;
@@ -46,7 +45,6 @@
       font-size: 1rem;
       cursor: pointer;
     }
-
     #category-form {
       position: absolute;
       top: 60px;
@@ -60,7 +58,6 @@
       gap: 10px;
       z-index: 1000;
     }
-
     #category-form button {
       background: #a259ff;
       color: white;
@@ -70,7 +67,6 @@
       cursor: pointer;
       font-size: 1rem;
     }
-
     #cart-icon {
       position: absolute;
       right: 20px;
@@ -78,13 +74,11 @@
       cursor: pointer;
       font-size: 1.1rem;
     }
-
     main {
       max-width: 700px;
       margin: 20px auto;
       padding: 0 10px;
     }
-
     .product {
       background: #1a1a1a;
       border-radius: 10px;
@@ -92,17 +86,14 @@
       margin-bottom: 15px;
       transition: transform 0.1s ease-in-out;
     }
-
     .product h2 {
       margin-top: 0;
     }
-
     .product-buttons {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
-
     .product-buttons button {
       background: #a259ff;
       border: none;
@@ -113,16 +104,13 @@
       cursor: pointer;
       transition: transform 0.1s ease;
     }
-
     .product-buttons button:disabled {
       background: #444;
       cursor: not-allowed;
     }
-
     .product-buttons button:active {
       transform: scale(0.95);
     }
-
     #cart-panel {
       position: fixed;
       top: 60px;
@@ -135,18 +123,15 @@
       overflow-y: auto;
       box-shadow: -2px 0 5px rgba(0,0,0,0.5);
     }
-
     .cart-item {
       border-bottom: 1px solid #333;
       padding: 5px 0;
     }
-
     #cart-total {
       font-weight: bold;
       text-align: center;
       margin-top: 10px;
     }
-
     #cart-panel button.remove {
       background: #ff5e5e;
       border: none;
@@ -154,7 +139,6 @@
       border-radius: 5px;
       margin-left: 5px;
     }
-
     @media (max-width: 600px) {
       #cart-panel {
         width: 100%;
@@ -165,8 +149,8 @@
 <body>
   <header>
     <div id="top-left-controls">
-      <a id="home-icon" href="index.html" onclick="playClickSound()">🏠Início</a>
-      <a id="discord-icon" href="https://discord.com/widget?id=1388350454995484693&theme=dark" target="_blank" onclick="playClickSound()">💬Discord</a>
+      <a id="home-icon" href="index.html" onclick="playClickSound()">🏠</a>
+      <a id="discord-icon" href="https://discord.com/widget?id=1388350454995484693&theme=dark" target="_blank" onclick="playClickSound()">💬</a>
       <button id="menu-button" onclick="playClickSound(); toggleCategoryForm()">☰ Categorias</button>
     </div>
     ZS Store
@@ -176,7 +160,7 @@
   <div id="category-form">
     <button onclick="playClickSound(); filterByCategory('brainrot')">🧠 Brainrot</button>
     <button onclick="playClickSound(); filterByCategory('grow')">🌱 Grow a Garden</button>
-    <button onclick="playClickSound(); filterByCategory('bloxfruits')">🍩 Blox Fruits (em breve)</button>
+    <button onclick="playClickSound(); filterByCategory('blox')">🍇 Blox Fruits</button>
   </div>
 
   <main id="product-list"></main>
@@ -205,12 +189,27 @@
     }
 
     const products = [
+      // Brainrot
       { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1, category: "brainrot" },
-      { name: "Chimpanzini Spiderini" , price: 3.50, stock: 0, category: "brainrot" },
-      { name: "Raccon", price: 29.99, stock: 3, category: "grow" },
-      { name: "Dragofly", price: 27.00, stock: 5, category: "grow" },
-      { name: "Butterfly", price: 23.00, stock: 2, category: "grow" },
-      { name: "Disco-Bee", price: 30.00, stock: 1, category: "grow" },
+      { name: "Chimpanzini Spiderini", price: 3, stock: 0, category: "brainrot" },
+      { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0, category: "brainrot" },
+      { name: "Los Tralaleritos", price: 4, stock: 0, category: "brainrot" },
+      { name: "Las Tralaleritas", price: 5, stock: 0, category: "brainrot" },
+      { name: "Graipuss Medussi", price: 5, stock: 0, category: "brainrot" },
+      { name: "Pot Hotspot", price: 10, stock: 0, category: "brainrot" },
+      { name: "La Grande Combinasion", price: 19, stock: 0, category: "brainrot" },
+      { name: "Nuclearo Dinosauro", price: 30, stock: 0, category: "brainrot" },
+      { name: "Garama and Madundung", price: 40, stock: 0, category: "brainrot" },
+
+      // Grow a Garden
+      { name: "🦝 Raccon", price: 29.99, stock: 3, category: "grow" },
+      { name: "🌱 ?", price: 7.00, stock: 1, category: "grow" },
+      { name: "🐉 Dragofly", price: 27.00, stock: 5, category: "grow" },
+      { name: "🦋 Butterfly", price: 23.00, stock: 2, category: "grow" },
+      { name: "🎵 Disco-Bee", price: 30.00, stock: 1, category: "grow" },
+
+      // Blox Fruits (placeholder)
+      { name: "Categoria Blox Fruits (Talvez em breve)", price: 0, stock: 0, category: "blox" },
     ];
 
     let cart = [];
@@ -267,7 +266,6 @@
     function addToCart(index) {
       const product = products[index];
       const existing = cart.find(i => i.name === product.name);
-
       if (existing) {
         if (existing.qty < product.stock) {
           existing.qty++;
@@ -281,7 +279,6 @@
           alert('Produto sem estoque!');
         }
       }
-
       updateCartUI();
     }
 
@@ -301,15 +298,12 @@
 
     async function sendCartOrder() {
       if (cart.length === 0) return;
-
       const name = prompt("Digite seu nome:");
       const discord = prompt("Digite seu Discord (opcional):");
-
       const description = cart.map(item => `${item.name} x${item.qty} - R$${(item.price * item.qty).toFixed(2)}`).join("\n");
       const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
 
       const webhookUrl = "https://discord.com/api/webhooks/1398173792718557235/CE5LlnTvohT8x5vXwJovasR8-psPnm1_1ewfVo_oLqY-sqypAwriqcK7DDQ0nKn-U6Kl";
-
       const content = {
         username: "ZS Store Bot",
         embeds: [{
