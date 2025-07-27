@@ -33,9 +33,6 @@
       color: white;
       text-decoration: none;
     }
-    #discord-icon {
-      margin-left: 5px;
-    }
     #menu-button {
       background: #a259ff;
       color: white;
@@ -160,7 +157,7 @@
   <div id="category-form">
     <button onclick="playClickSound(); filterByCategory('brainrot')">🧠 Brainrot</button>
     <button onclick="playClickSound(); filterByCategory('grow')">🌱 Grow a Garden</button>
-    <button onclick="playClickSound(); filterByCategory('blox')">🍇 Blox Fruits</button>
+    <button onclick="playClickSound(); filterByCategory('blox')">🍍 Blox Fruits (em breve)</button>
   </div>
 
   <main id="product-list"></main>
@@ -189,7 +186,6 @@
     }
 
     const products = [
-      // Brainrot
       { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1, category: "brainrot" },
       { name: "Chimpanzini Spiderini", price: 3, stock: 0, category: "brainrot" },
       { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0, category: "brainrot" },
@@ -201,15 +197,11 @@
       { name: "Nuclearo Dinosauro", price: 30, stock: 0, category: "brainrot" },
       { name: "Garama and Madundung", price: 40, stock: 0, category: "brainrot" },
 
-      // Grow a Garden
-      { name: "🦝 Raccon", price: 29.99, stock: 3, category: "grow" },
-      { name: "🌱 ?", price: 7.00, stock: 1, category: "grow" },
-      { name: "🐉 Dragofly", price: 27.00, stock: 5, category: "grow" },
-      { name: "🦋 Butterfly", price: 23.00, stock: 2, category: "grow" },
-      { name: "🎵 Disco-Bee", price: 30.00, stock: 1, category: "grow" },
-
-      // Blox Fruits (placeholder)
-      { name: "Categoria Blox Fruits (Talvez em breve)", price: 0, stock: 0, category: "blox" },
+      { name: "Raccon", price: 29.99, stock: 3, category: "grow" },
+      { name: "Valor: R$7,00", price: 7, stock: 1, category: "grow" },
+      { name: "Dragofly", price: 27, stock: 5, category: "grow" },
+      { name: "Butterfly", price: 23, stock: 2, category: "grow" },
+      { name: "Disco-Bee", price: 30, stock: 1, category: "grow" }
     ];
 
     let cart = [];
@@ -223,7 +215,18 @@
     function renderProducts() {
       const list = document.getElementById('product-list');
       list.innerHTML = '';
-      const filtered = activeCategory ? products.filter(p => p.category === activeCategory) : products;
+
+      if (!activeCategory) {
+        list.innerHTML = '<p style="text-align:center; color:#888; font-size:1.2rem; margin-top:40px;">👈 Escolha uma categoria para ver os produtos</p>';
+        return;
+      }
+
+      const filtered = products.filter(p => p.category === activeCategory);
+      if (filtered.length === 0) {
+        list.innerHTML = '<p style="text-align:center; color:#999;">Nenhum produto encontrado para essa categoria.</p>';
+        return;
+      }
+
       filtered.forEach((p, i) => {
         const div = document.createElement('div');
         div.className = 'product';
@@ -266,6 +269,7 @@
     function addToCart(index) {
       const product = products[index];
       const existing = cart.find(i => i.name === product.name);
+
       if (existing) {
         if (existing.qty < product.stock) {
           existing.qty++;
@@ -279,6 +283,7 @@
           alert('Produto sem estoque!');
         }
       }
+
       updateCartUI();
     }
 
@@ -298,12 +303,15 @@
 
     async function sendCartOrder() {
       if (cart.length === 0) return;
+
       const name = prompt("Digite seu nome:");
       const discord = prompt("Digite seu Discord (opcional):");
+
       const description = cart.map(item => `${item.name} x${item.qty} - R$${(item.price * item.qty).toFixed(2)}`).join("\n");
       const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
 
       const webhookUrl = "https://discord.com/api/webhooks/1398173792718557235/CE5LlnTvohT8x5vXwJovasR8-psPnm1_1ewfVo_oLqY-sqypAwriqcK7DDQ0nKn-U6Kl";
+
       const content = {
         username: "ZS Store Bot",
         embeds: [{
