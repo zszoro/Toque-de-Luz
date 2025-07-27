@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,162 +9,155 @@
       font-family: Arial, sans-serif;
       background: #0c0c0c;
       color: #f2f2f2;
-    }
+    }header {
+  background: #a259ff;
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  position: relative;
+  color: #fff;
+}
 
-    header {
-      background: #a259ff;
-      padding: 20px;
-      text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-      position: relative;
-      color: #fff;
-    }
+#top-left-controls {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    #top-left-controls {
-      position: absolute;
-      left: 20px;
-      top: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+#home-icon {
+  font-size: 1.3rem;
+  color: white;
+  text-decoration: none;
+}
 
-    #home-icon {
-      text-decoration: none;
-      color: white;
-      font-size: 1.3rem;
-    }
+#menu-button {
+  background: #a259ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
 
-    #menu-button {
-      background: #a259ff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 1rem;
-      cursor: pointer;
-      z-index: 1000;
-    }
+#category-form {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background: #1a1a1a;
+  border: 2px solid #a259ff;
+  border-radius: 10px;
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
 
-    #cart-icon {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      cursor: pointer;
-      font-size: 1.1rem;
-    }
+#category-form button {
+  background: #a259ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 1rem;
+}
 
-    main {
-      max-width: 700px;
-      margin: 20px auto;
-      padding: 0 10px;
-    }
+#cart-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
 
-    .product {
-      background: #1a1a1a;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 15px;
-      transition: transform 0.1s ease-in-out;
-    }
+main {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
 
-    .product h2 {
-      margin-top: 0;
-    }
+.product {
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: transform 0.1s ease-in-out;
+}
 
-    .product-buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+.product h2 {
+  margin-top: 0;
+}
 
-    .product-buttons button {
-      background: #a259ff;
-      border: none;
-      padding: 10px 20px;
-      color: white;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.1s ease;
-    }
+.product-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
-    .product-buttons button:disabled {
-      background: #444;
-      cursor: not-allowed;
-    }
+.product-buttons button {
+  background: #a259ff;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
 
-    .product-buttons button:active {
-      transform: scale(0.95);
-    }
+.product-buttons button:disabled {
+  background: #444;
+  cursor: not-allowed;
+}
 
-    #cart-panel {
-      position: fixed;
-      top: 60px;
-      right: 0;
-      width: 300px;
-      background: #111;
-      height: calc(100% - 60px);
-      padding: 10px;
-      display: none;
-      overflow-y: auto;
-      box-shadow: -2px 0 5px rgba(0,0,0,0.5);
-    }
+.product-buttons button:active {
+  transform: scale(0.95);
+}
 
-    .cart-item {
-      border-bottom: 1px solid #333;
-      padding: 5px 0;
-    }
+#cart-panel {
+  position: fixed;
+  top: 60px;
+  right: 0;
+  width: 300px;
+  background: #111;
+  height: calc(100% - 60px);
+  padding: 10px;
+  display: none;
+  overflow-y: auto;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+}
 
-    #cart-total {
-      font-weight: bold;
-      text-align: center;
-      margin-top: 10px;
-    }
+.cart-item {
+  border-bottom: 1px solid #333;
+  padding: 5px 0;
+}
 
-    #cart-panel button.remove {
-      background: #ff5e5e;
-      border: none;
-      padding: 3px 8px;
-      border-radius: 5px;
-      margin-left: 5px;
-    }
+#cart-total {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
 
-    #category-form {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      border: 2px solid #a259ff;
-      display: none;
-      z-index: 999;
-      max-width: 90%;
-    }
+#cart-panel button.remove {
+  background: #ff5e5e;
+  border: none;
+  padding: 3px 8px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
 
-    #category-form h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
+@media (max-width: 600px) {
+  #cart-panel {
+    width: 100%;
+  }
+}
 
-    #category-form button {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background: #a259ff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 600px) {
-      #cart-panel {
-        width: 100%;
-      }
-    }
   </style>
 </head>
 <body>
@@ -176,58 +168,51 @@
     </div>
     ZS Store
     <div id="cart-icon" onclick="playClickSound(); toggleCart()">🛒 Carrinho <span id="cart-count">0</span></div>
-  </header>
-
-  <main id="product-list"></main>
-
-  <div id="cart-panel">
+  </header>  <div id="category-form">
+    <button onclick="playClickSound(); filterByCategory('brainrot')">🧠 Brainrot</button>
+    <button onclick="playClickSound(); filterByCategory('grow')">🌱 Grow a Garden</button>
+    <button onclick="playClickSound(); filterByCategory('discord')">💬 Discord</button>
+  </div>  <main id="product-list"></main>  <div id="cart-panel">
     <h3>Seu Carrinho</h3>
     <div id="cart-items"></div>
     <div id="cart-total">Total: R$0,00</div>
     <br>
     <button onclick="playClickSound(); sendCartOrder()">Finalizar Pedido</button>
     <p id="cart-message" style="margin-top: 10px;"></p>
-  </div>
-
-  <div id="category-form">
-    <h3>Categorias (em breve)</h3>
-    <p>Essa área está sendo desenvolvida...</p>
-    <button onclick="playClickSound(); toggleCategoryForm()">Fechar</button>
-  </div>
-
-  <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5d66b45f0d.mp3?filename=click-124467.mp3"></audio>
+  </div><audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5d66b45f0d.mp3?filename=click-124467.mp3"></audio>
 
   <script>
     const clickSound = document.getElementById('click-sound');
     function playClickSound() {
       clickSound.currentTime = 0;
-      clickSound.play().catch(() => {});
+      clickSound.play();
     }
 
     function toggleCategoryForm() {
       const form = document.getElementById('category-form');
-      form.style.display = form.style.display === 'block' ? 'none' : 'block';
+      form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
     }
 
+    // Produtos com categoria
     const products = [
-      { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1 },
-      { name: "Chimpanzini Spiderini", price: 3, stock: 0 },
-      { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0 },
-      { name: "Los Tralaleritos", price: 4, stock: 0 },
-      { name: "Las Tralaleritas", price: 5, stock: 0 },
-      { name: "Graipuss Medussi", price: 5, stock: 0 },
-      { name: "Pot Hotspot", price: 10, stock: 0 },
-      { name: "La Grande Combinasion", price: 19, stock: 0 },
-      { name: "Nuclearo Dinosauro", price: 30, stock: 0 },
-      { name: "Garama and Madundung", price: 40, stock: 0 },
+      { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1, category: "brainrot" },
+      { name: "Cacto Mágico", price: 5, stock: 2, category: "grow" },
+      { name: "Link do Discord Premium", price: 10, stock: 99, category: "discord" },
     ];
 
     let cart = [];
+    let activeCategory = null;
+
+    function filterByCategory(category) {
+      activeCategory = category;
+      renderProducts();
+    }
 
     function renderProducts() {
       const list = document.getElementById('product-list');
       list.innerHTML = '';
-      products.forEach((p, i) => {
+      const filtered = activeCategory ? products.filter(p => p.category === activeCategory) : products;
+      filtered.forEach((p, i) => {
         const div = document.createElement('div');
         div.className = 'product';
         div.innerHTML = `
@@ -313,7 +298,7 @@
       const webhookUrl = "https://discord.com/api/webhooks/1398173792718557235/CE5LlnTvohT8x5vXwJovasR8-psPnm1_1ewfVo_oLqY-sqypAwriqcK7DDQ0nKn-U6Kl";
 
       const content = {
-        username: "Brainrot Store Bot",
+        username: "ZS Store Bot",
         embeds: [{
           title: "Novo pedido via carrinho",
           description,
@@ -355,6 +340,5 @@
 
     renderProducts();
     updateCartUI();
-  </script>
-</body>
+  </script></body>
 </html>
