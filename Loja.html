@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Brainrot Store</title>
+  <title>ZS Store - Loja</title>
   <style>
     body {
       margin: 0;
@@ -22,18 +22,16 @@
       color: #fff;
     }
 
-    #cart-icon {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      cursor: pointer;
-      font-size: 1.1rem;
-    }
-
-    #menu-button {
+    #top-left-controls {
       position: absolute;
       left: 20px;
       top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #menu-button {
       background: #a259ff;
       color: white;
       border: none;
@@ -41,7 +39,20 @@
       padding: 8px 12px;
       font-size: 1rem;
       cursor: pointer;
-      z-index: 1000;
+    }
+
+    #home-icon {
+      text-decoration: none;
+      font-size: 1.3rem;
+      color: white;
+    }
+
+    #cart-icon {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      cursor: pointer;
+      font-size: 1.1rem;
     }
 
     main {
@@ -158,8 +169,11 @@
 </head>
 <body>
   <header>
-    <button id="menu-button" onclick="playClickSound(); toggleCategoryForm()">☰ Categorias</button>
-    Brainrot Store
+    <div id="top-left-controls">
+      <button id="menu-button" onclick="playClickSound(); toggleCategoryForm()">☰ Categorias</button>
+      <a id="home-icon" href="index.html" onclick="playClickSound()">🏠</a>
+    </div>
+    ZS Store
     <div id="cart-icon" onclick="playClickSound(); toggleCart()">🛒 Carrinho <span id="cart-count">0</span></div>
   </header>
 
@@ -186,7 +200,7 @@
     const clickSound = document.getElementById('click-sound');
     function playClickSound() {
       clickSound.currentTime = 0;
-      clickSound.play();
+      clickSound.play().catch(() => {});
     }
 
     function toggleCategoryForm() {
