@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,155 +10,170 @@
       font-family: Arial, sans-serif;
       background: #0c0c0c;
       color: #f2f2f2;
-    }header {
-  background: #a259ff;
-  padding: 20px;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  position: relative;
-  color: #fff;
-}
+    }
 
-#top-left-controls {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+    header {
+      background: #a259ff;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      position: relative;
+      color: #fff;
+    }
 
-#home-icon {
-  font-size: 1.3rem;
-  color: white;
-  text-decoration: none;
-}
+    #top-left-controls {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-#menu-button {
-  background: #a259ff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 1rem;
-  cursor: pointer;
-}
+    #home-icon {
+      font-size: 1.3rem;
+      color: white;
+      text-decoration: none;
+    }
 
-#category-form {
-  position: absolute;
-  top: 60px;
-  left: 20px;
-  background: #1a1a1a;
-  border: 2px solid #a259ff;
-  border-radius: 10px;
-  padding: 10px;
-  display: none;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1000;
-}
+    #menu-button {
+      background: #a259ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
 
-#category-form button {
-  background: #a259ff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 1rem;
-}
+    #category-form {
+      position: absolute;
+      top: 60px;
+      left: 20px;
+      background: #1a1a1a;
+      border: 2px solid #a259ff;
+      border-radius: 10px;
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
 
-#cart-icon {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  cursor: pointer;
-  font-size: 1.1rem;
-}
+    #category-form button {
+      background: #a259ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
 
-main {
-  max-width: 700px;
-  margin: 20px auto;
-  padding: 0 10px;
-}
+    #cart-icon {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
 
-.product {
-  background: #1a1a1a;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
-  transition: transform 0.1s ease-in-out;
-}
+    #search-bar {
+      margin: 15px auto 5px;
+      text-align: center;
+    }
 
-.product h2 {
-  margin-top: 0;
-}
+    #search-input {
+      padding: 10px;
+      width: 90%;
+      max-width: 400px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
 
-.product-buttons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+    main {
+      max-width: 700px;
+      margin: 10px auto;
+      padding: 0 10px;
+    }
 
-.product-buttons button {
-  background: #a259ff;
-  border: none;
-  padding: 10px 20px;
-  color: white;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.1s ease;
-}
+    .product {
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      transition: transform 0.1s ease-in-out;
+    }
 
-.product-buttons button:disabled {
-  background: #444;
-  cursor: not-allowed;
-}
+    .product h2 {
+      margin-top: 0;
+    }
 
-.product-buttons button:active {
-  transform: scale(0.95);
-}
+    .product-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-#cart-panel {
-  position: fixed;
-  top: 60px;
-  right: 0;
-  width: 300px;
-  background: #111;
-  height: calc(100% - 60px);
-  padding: 10px;
-  display: none;
-  overflow-y: auto;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
-}
+    .product-buttons button {
+      background: #a259ff;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
 
-.cart-item {
-  border-bottom: 1px solid #333;
-  padding: 5px 0;
-}
+    .product-buttons button:disabled {
+      background: #444;
+      cursor: not-allowed;
+    }
 
-#cart-total {
-  font-weight: bold;
-  text-align: center;
-  margin-top: 10px;
-}
+    .product-buttons button:active {
+      transform: scale(0.95);
+    }
 
-#cart-panel button.remove {
-  background: #ff5e5e;
-  border: none;
-  padding: 3px 8px;
-  border-radius: 5px;
-  margin-left: 5px;
-}
+    #cart-panel {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 300px;
+      background: #111;
+      height: calc(100% - 60px);
+      padding: 10px;
+      display: none;
+      overflow-y: auto;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    }
 
-@media (max-width: 600px) {
-  #cart-panel {
-    width: 100%;
-  }
-}
+    .cart-item {
+      border-bottom: 1px solid #333;
+      padding: 5px 0;
+    }
 
+    #cart-total {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    #cart-panel button.remove {
+      background: #ff5e5e;
+      border: none;
+      padding: 3px 8px;
+      border-radius: 5px;
+      margin-left: 5px;
+    }
+
+    @media (max-width: 600px) {
+      #cart-panel {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -168,18 +184,30 @@ main {
     </div>
     ZS Store
     <div id="cart-icon" onclick="playClickSound(); toggleCart()">🛒 Carrinho <span id="cart-count">0</span></div>
-  </header>  <div id="category-form">
+  </header>
+
+  <div id="category-form">
     <button onclick="playClickSound(); filterByCategory('brainrot')">🧠 Brainrot</button>
     <button onclick="playClickSound(); filterByCategory('grow')">🌱 Grow a Garden</button>
     <button onclick="playClickSound(); filterByCategory('discord')">💬 Discord</button>
-  </div>  <main id="product-list"></main>  <div id="cart-panel">
+  </div>
+
+  <div id="search-bar">
+    <input type="text" id="search-input" placeholder="Pesquisar produto..." oninput="renderProducts()" />
+  </div>
+
+  <main id="product-list"></main>
+
+  <div id="cart-panel">
     <h3>Seu Carrinho</h3>
     <div id="cart-items"></div>
     <div id="cart-total">Total: R$0,00</div>
     <br>
     <button onclick="playClickSound(); sendCartOrder()">Finalizar Pedido</button>
     <p id="cart-message" style="margin-top: 10px;"></p>
-  </div><audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5d66b45f0d.mp3?filename=click-124467.mp3"></audio>
+  </div>
+
+  <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5d66b45f0d.mp3?filename=click-124467.mp3"></audio>
 
   <script>
     const clickSound = document.getElementById('click-sound');
@@ -193,11 +221,19 @@ main {
       form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
     }
 
-    // Produtos com categoria
     const products = [
       { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1, category: "brainrot" },
+      { name: "Chimpanzini Spiderini", price: 3, stock: 0, category: "brainrot" },
+      { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0, category: "brainrot" },
+      { name: "Los Tralaleritos", price: 4, stock: 0, category: "brainrot" },
+      { name: "Las Tralaleritas", price: 5, stock: 0, category: "brainrot" },
+      { name: "Graipuss Medussi", price: 5, stock: 0, category: "brainrot" },
+      { name: "Pot Hotspot", price: 10, stock: 0, category: "brainrot" },
+      { name: "La Grande Combinasion", price: 19, stock: 0, category: "brainrot" },
+      { name: "Nuclearo Dinosauro", price: 30, stock: 0, category: "brainrot" },
+      { name: "Garama and Madundung", price: 40, stock: 0, category: "brainrot" },
       { name: "Cacto Mágico", price: 5, stock: 2, category: "grow" },
-      { name: "Link do Discord Premium", price: 10, stock: 99, category: "discord" },
+      { name: "Link do Discord Premium", price: 10, stock: 99, category: "discord" }
     ];
 
     let cart = [];
@@ -205,13 +241,26 @@ main {
 
     function filterByCategory(category) {
       activeCategory = category;
+      document.getElementById("search-input").value = "";
       renderProducts();
     }
 
     function renderProducts() {
       const list = document.getElementById('product-list');
+      const search = document.getElementById('search-input').value.toLowerCase();
       list.innerHTML = '';
-      const filtered = activeCategory ? products.filter(p => p.category === activeCategory) : products;
+
+      const filtered = products.filter(p => {
+        const matchCategory = activeCategory ? p.category === activeCategory : true;
+        const matchSearch = p.name.toLowerCase().includes(search);
+        return matchCategory && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        list.innerHTML = '<p style="text-align:center;">Nenhum produto encontrado.</p>';
+        return;
+      }
+
       filtered.forEach((p, i) => {
         const div = document.createElement('div');
         div.className = 'product';
@@ -340,5 +389,6 @@ main {
 
     renderProducts();
     updateCartUI();
-  </script></body>
+  </script>
+</body>
 </html>
