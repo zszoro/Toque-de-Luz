@@ -25,21 +25,19 @@
       right: 20px;
       top: 20px;
       cursor: pointer;
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
-    #extra-button {
-      position: fixed;
-      bottom: 20px;
+    #menu-button {
+      position: absolute;
       left: 20px;
+      top: 20px;
       background: #a259ff;
       color: white;
       border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.5rem;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
       z-index: 1000;
     }
     main {
@@ -52,7 +50,7 @@
       border-radius: 10px;
       padding: 15px;
       margin-bottom: 15px;
-      transition: transform 0.1s ease-in-out;
+      transition: transform 0.15s ease;
     }
     .product h2 {
       margin-top: 0;
@@ -112,44 +110,14 @@
         width: 100%;
       }
     }
-
-    /* Modal personalizado */
-    #custom-modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    .modal-content {
-      background: #1a1a1a;
-      padding: 20px 30px;
-      border-radius: 10px;
-      color: white;
-      text-align: center;
-      box-shadow: 0 0 10px #000;
-    }
-    .modal-content button {
-      background: #a259ff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin-top: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
   <header>
+    <button id="menu-button" onclick="playClickSound(); alert('Menu em breve!')">☰ Menu</button>
     Brainrot Store
-    <div id="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+    <div id="cart-icon" onclick="playClickSound(); toggleCart()">🛒 (Carrinho) <span id="cart-count">0</span></div>
   </header>
-
-  <button id="extra-button" onclick="playClickSound(); showModal('Função extra em breve!')">+</button>
 
   <main id="product-list"></main>
 
@@ -162,31 +130,13 @@
     <p id="cart-message" style="margin-top: 10px;"></p>
   </div>
 
-  <!-- Áudio de clique -->
   <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5d66b45f0d.mp3?filename=click-124467.mp3"></audio>
-
-  <!-- Modal -->
-  <div id="custom-modal">
-    <div class="modal-content">
-      <p id="modal-message"></p>
-      <button onclick="closeModal()">OK</button>
-    </div>
-  </div>
 
   <script>
     const clickSound = document.getElementById('click-sound');
     function playClickSound() {
       clickSound.currentTime = 0;
       clickSound.play();
-    }
-
-    function showModal(message) {
-      document.getElementById('modal-message').textContent = message;
-      document.getElementById('custom-modal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('custom-modal').style.display = 'none';
     }
 
     const products = [
@@ -254,13 +204,13 @@
         if (existing.qty < product.stock) {
           existing.qty++;
         } else {
-          showModal('Estoque máximo atingido!');
+          alert('Estoque máximo atingido!');
         }
       } else {
         if (product.stock > 0) {
           cart.push({ name: product.name, price: product.price, qty: 1 });
         } else {
-          showModal('Produto sem estoque!');
+          alert('Produto sem estoque!');
         }
       }
 
@@ -275,7 +225,7 @@
     function buyNow(index) {
       const p = products[index];
       if (p.stock > 0) {
-        showModal(`Pedido de "${p.name}" feito! Pague R$${p.price.toFixed(2)} via PIX: 12992025025\nDepois, abra um ticket no Discord.`);
+        alert(`Pedido de "${p.name}" feito! Pague R$${p.price.toFixed(2)} via PIX: 12992025025\nDepois, abra um ticket no Discord.`);
         p.stock--;
         renderProducts();
       }
@@ -326,10 +276,10 @@
           updateCartUI();
           renderProducts();
         } else {
-          showModal("❌ Erro ao enviar pedido.");
+          msg.textContent = "❌ Erro ao enviar pedido.";
         }
       } catch (e) {
-        showModal("❌ Erro de conexão.");
+        document.getElementById('cart-message').textContent = "❌ Erro de conexão.";
       }
     }
 
