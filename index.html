@@ -1,28 +1,292 @@
-Brainrot Store body { margin: 0; font-family: Arial, sans-serif; background: #0c0c0c; color: #f2f2f2; } header { background: #a259ff; padding: 20px; text-align: center; font-size: 2rem; font-weight: bold; position: relative; color: #fff; } #cart-icon { position: absolute; right: 20px; top: 20px; cursor: pointer; font-size: 1.5rem; } #extra-button { position: fixed; bottom: 20px; left: 20px; background: #a259ff; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1000; } main { max-width: 700px; margin: 20px auto; padding: 0 10px; } .product { background: #1a1a1a; border-radius: 10px; padding: 15px; margin-bottom: 15px; transition: transform 0.1s ease-in-out; } .product h2 { margin-top: 0; } .product-buttons { display: flex; gap: 10px; flex-wrap: wrap; } .product-buttons button { background: #a259ff; border: none; padding: 10px 20px; color: white; font-weight: bold; border-radius: 8px; cursor: pointer; transition: transform 0.1s ease; } .product-buttons button:disabled { background: #444; cursor: not-allowed; } .product-buttons button:active { transform: scale(0.95); } #cart-panel { position: fixed; top: 60px; right: 0; width: 300px; background: #111; height: calc(100% - 60px); padding: 10px; display: none; overflow-y: auto; box-shadow: -2px 0 5px rgba(0,0,0,0.5); } .cart-item { border-bottom: 1px solid #333; padding: 5px 0; } #cart-total { font-weight: bold; text-align: center; margin-top: 10px; } #cart-panel button.remove { background: #ff5e5e; border: none; padding: 3px 8px; border-radius: 5px; margin-left: 5px; } @media (max-width: 600px) { #cart-panel { width: 100%; } } Brainrot Store 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brainrot Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0c0c0c;
+      color: #f2f2f2;
+    }
+    header {
+      background: #a259ff;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      position: relative;
+      color: #fff;
+    }
+    #cart-icon {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    #extra-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #a259ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      z-index: 1000;
+    }
+    main {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+    .product {
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      transition: transform 0.1s ease-in-out;
+    }
+    .product h2 {
+      margin-top: 0;
+    }
+    .product-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .product-buttons button {
+      background: #a259ff;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+    .product-buttons button:disabled {
+      background: #444;
+      cursor: not-allowed;
+    }
+    .product-buttons button:active {
+      transform: scale(0.95);
+    }
+    #cart-panel {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 300px;
+      background: #111;
+      height: calc(100% - 60px);
+      padding: 10px;
+      display: none;
+      overflow-y: auto;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    }
+    .cart-item {
+      border-bottom: 1px solid #333;
+      padding: 5px 0;
+    }
+    #cart-total {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+    }
+    #cart-panel button.remove {
+      background: #ff5e5e;
+      border: none;
+      padding: 3px 8px;
+      border-radius: 5px;
+      margin-left: 5px;
+    }
+    @media (max-width: 600px) {
+      #cart-panel {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Brainrot Store
+    <div id="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+  </header>
+  <button id="extra-button" onclick="alert('Em breve!')">+</button>
 
-🛒 0
+  <main id="product-list"></main>
 
-+
+  <div id="cart-panel">
+    <h3>Seu Carrinho</h3>
+    <div id="cart-items"></div>
+    <div id="cart-total">Total: R$0,00</div>
+    <br>
+    <button onclick="playClickSound(); sendCartOrder()">Finalizar Pedido</button>
+    <p id="cart-message" style="margin-top: 10px;"></p>
+  </div>
 
-Seu Carrinho 
+  <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5d66b45f0d.mp3?filename=click-124467.mp3"></audio>
 
-Total: R$0,00
+  <script>
+    const clickSound = document.getElementById('click-sound');
+    function playClickSound() {
+      clickSound.currentTime = 0;
+      clickSound.play();
+    }
 
+    const products = [
+      { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1 },
+      { name: "Chimpanzini Spiderini", price: 3, stock: 0 },
+      { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0 },
+      { name: "Los Tralaleritos", price: 4, stock: 0 },
+      { name: "Las Tralaleritas", price: 5, stock: 0 },
+      { name: "Graipuss Medussi", price: 5, stock: 0 },
+      { name: "Pot Hotspot", price: 10, stock: 0 },
+      { name: "La Grande Combinasion", price: 19, stock: 0 },
+      { name: "Nuclearo Dinosauro", price: 30, stock: 0 },
+      { name: "Garama and Madundung", price: 40, stock: 0 },
+    ];
 
-Finalizar Pedido 
+    let cart = [];
 
-const clickSound = document.getElementById('click-sound'); function playClickSound() { clickSound.currentTime = 0; clickSound.play(); } const products = [ { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1 }, { name: "Chimpanzini Spiderini", price: 3, stock: 0 }, { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0 }, { name: "Los Tralaleritos", price: 4, stock: 0 }, { name: "Las Tralaleritas", price: 5, stock: 0 }, { name: "Graipuss Medussi", price: 5, stock: 0 }, { name: "Pot Hotspot", price: 10, stock: 0 }, { name: "La Grande Combinasion", price: 19, stock: 0 }, { name: "Nuclearo Dinosauro", price: 30, stock: 0 }, { name: "Garama and Madundung", price: 40, stock: 0 }, ]; let cart = []; function renderProducts() { const list = document.getElementById('product-list'); list.innerHTML = ''; products.forEach((p, i) => { const div = document.createElement('div'); div.className = 'product'; div.innerHTML = ` ${p.name} - R$${p.price.toFixed(2)} 
+    function renderProducts() {
+      const list = document.getElementById('product-list');
+      list.innerHTML = '';
+      products.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `
+          <h2>${p.name} - R$${p.price.toFixed(2)}</h2>
+          <p style="color: ${p.stock > 0 ? 'white' : 'red'}">Estoque: ${p.stock}</p>
+          <div class="product-buttons">
+            <button ${p.stock === 0 ? 'disabled' : ''} onclick="playClickSound(); buyNow(${i})">Comprar</button>
+            <button ${p.stock === 0 ? 'disabled' : ''} onclick="playClickSound(); addToCart(${i})">Adicionar ao carrinho</button>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
 
-Estoque: ${p.stock}
+    function toggleCart() {
+      const panel = document.getElementById('cart-panel');
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
 
-Comprar Adicionar ao carrinho 
+    function updateCartUI() {
+      const cartItems = document.getElementById('cart-items');
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      document.getElementById('cart-count').textContent = cart.reduce((a, b) => a + b.qty, 0);
+      document.getElementById('cart-total').textContent = `Total: R$${total.toFixed(2)}`;
 
-`; list.appendChild(div); }); } function toggleCart() { const panel = document.getElementById('cart-panel'); panel.style.display = panel.style.display === 'block' ? 'none' : 'block'; } function updateCartUI() { const cartItems = document.getElementById('cart-items'); const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0); document.getElementById('cart-count').textContent = cart.reduce((a, b) => a + b.qty, 0); document.getElementById('cart-total').textContent = `Total: R$${total.toFixed(2)}`; if (cart.length === 0) { cartItems.innerHTML = '
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Seu carrinho está vazio.</p>';
+        return;
+      }
 
-Seu carrinho está vazio.
+      cartItems.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          ${item.name} x${item.qty} - R$${(item.price * item.qty).toFixed(2)}
+          <button class="remove" onclick="playClickSound(); removeFromCart(${index})">X</button>
+        </div>
+      `).join('');
+    }
 
-'; return; } cartItems.innerHTML = cart.map((item, index) => ` 
+    function addToCart(index) {
+      const product = products[index];
+      const existing = cart.find(i => i.name === product.name);
 
-${item.name} x${item.qty} - R$${(item.price * item.qty).toFixed(2)} X 
+      if (existing) {
+        if (existing.qty < product.stock) {
+          existing.qty++;
+        } else {
+          alert('Estoque máximo atingido!');
+        }
+      } else {
+        if (product.stock > 0) {
+          cart.push({ name: product.name, price: product.price, qty: 1 });
+        } else {
+          alert('Produto sem estoque!');
+        }
+      }
 
-`).join(''); } function addToCart(index) { const product = products[index]; const existing = cart.find(i => i.name === product.name); if (existing) { if (existing.qty 0) { cart.push({ name: product.name, price: product.price, qty: 1 }); } else { alert('Produto sem estoque!'); } } updateCartUI(); } function removeFromCart(index) { cart.splice(index, 1); updateCartUI(); } function buyNow(index) { const p = products[index]; if (p.stock > 0) { alert(`Pedido de "${p.name}" feito! Pague R$${p.price.toFixed(2)} via PIX: 12992025025\nDepois, abra um ticket no Discord.`); p.stock--; renderProducts(); } } async function sendCartOrder() { if (cart.length === 0) return; const name = prompt("Digite seu nome:"); const discord = prompt("Digite seu Discord (opcional):"); const description = cart.map(item => `${item.name} x${item.qty} - R$${(item.price * item.qty).toFixed(2)}`).join("\n"); const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0); const webhookUrl = "https://discord.com/api/webhooks/1398173792718557235/CE5LlnTvohT8x5vXwJovasR8-psPnm1_1ewfVo_oLqY-sqypAwriqcK7DDQ0nKn-U6Kl"; const content = { username: "Brainrot Store Bot", embeds: [{ title: "Novo pedido via carrinho", description, color: 0xa259ff, fields: [ { name: "Nome", value: name || "Não informado", inline: true }, { name: "Discord", value: discord || "Não informado", inline: true }, { name: "Total", value: `R$${total.toFixed(2)}`, inline: false }, { name: "PIX", value: "12992025025", inline: false } ], timestamp: new Date().toISOString() }] }; try { const res = await fetch(webhookUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(content) }); const msg = document.getElementById('cart-message'); if (res.ok) { msg.textContent = "✅ Pedido enviado! Abra um ticket no Discord após pagar via PIX."; cart.forEach(item => { const product = products.find(p => p.name === item.name); if (product) product.stock -= item.qty; }); cart = []; updateCartUI(); renderProducts(); } else { msg.textContent = "❌ Erro ao enviar pedido."; } } catch (e) { document.getElementById('cart-message').textContent = "❌ Erro de conexão."; } } renderProducts(); updateCartUI(); 
+      updateCartUI();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function buyNow(index) {
+      const p = products[index];
+      if (p.stock > 0) {
+        alert(`Pedido de "${p.name}" feito! Pague R$${p.price.toFixed(2)} via PIX: 12992025025\nDepois, abra um ticket no Discord.`);
+        p.stock--;
+        renderProducts();
+      }
+    }
+
+    async function sendCartOrder() {
+      if (cart.length === 0) return;
+
+      const name = prompt("Digite seu nome:");
+      const discord = prompt("Digite seu Discord (opcional):");
+
+      const description = cart.map(item => `${item.name} x${item.qty} - R$${(item.price * item.qty).toFixed(2)}`).join("\n");
+      const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
+
+      const webhookUrl = "https://discord.com/api/webhooks/1398173792718557235/CE5LlnTvohT8x5vXwJovasR8-psPnm1_1ewfVo_oLqY-sqypAwriqcK7DDQ0nKn-U6Kl";
+
+      const content = {
+        username: "Brainrot Store Bot",
+        embeds: [{
+          title: "Novo pedido via carrinho",
+          description,
+          color: 0xa259ff,
+          fields: [
+            { name: "Nome", value: name || "Não informado", inline: true },
+            { name: "Discord", value: discord || "Não informado", inline: true },
+            { name: "Total", value: `R$${total.toFixed(2)}`, inline: false },
+            { name: "PIX", value: "12992025025", inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        }]
+      };
+
+      try {
+        const res = await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(content)
+        });
+
+        const msg = document.getElementById('cart-message');
+        if (res.ok) {
+          msg.textContent = "✅ Pedido enviado! Abra um ticket no Discord após pagar via PIX.";
+          cart.forEach(item => {
+            const product = products.find(p => p.name === item.name);
+            if (product) product.stock -= item.qty;
+          });
+          cart = [];
+          updateCartUI();
+          renderProducts();
+        } else {
+          msg.textContent = "❌ Erro ao enviar pedido.";
+        }
+      } catch (e) {
+        document.getElementById('cart-message').textContent = "❌ Erro de conexão.";
+      }
+    }
+
+    renderProducts();
+    updateCartUI();
+  </script>
+</body>
+</html>
