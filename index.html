@@ -112,6 +112,35 @@
         width: 100%;
       }
     }
+
+    /* Modal personalizado */
+    #custom-modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal-content {
+      background: #1a1a1a;
+      padding: 20px 30px;
+      border-radius: 10px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 0 10px #000;
+    }
+    .modal-content button {
+      background: #a259ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -119,7 +148,8 @@
     Brainrot Store
     <div id="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
   </header>
-  <button id="extra-button" onclick="alert('Em breve!')">+</button>
+
+  <button id="extra-button" onclick="playClickSound(); showModal('Função extra em breve!')">+</button>
 
   <main id="product-list"></main>
 
@@ -132,13 +162,31 @@
     <p id="cart-message" style="margin-top: 10px;"></p>
   </div>
 
+  <!-- Áudio de clique -->
   <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5d66b45f0d.mp3?filename=click-124467.mp3"></audio>
+
+  <!-- Modal -->
+  <div id="custom-modal">
+    <div class="modal-content">
+      <p id="modal-message"></p>
+      <button onclick="closeModal()">OK</button>
+    </div>
+  </div>
 
   <script>
     const clickSound = document.getElementById('click-sound');
     function playClickSound() {
       clickSound.currentTime = 0;
       clickSound.play();
+    }
+
+    function showModal(message) {
+      document.getElementById('modal-message').textContent = message;
+      document.getElementById('custom-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('custom-modal').style.display = 'none';
     }
 
     const products = [
@@ -206,13 +254,13 @@
         if (existing.qty < product.stock) {
           existing.qty++;
         } else {
-          alert('Estoque máximo atingido!');
+          showModal('Estoque máximo atingido!');
         }
       } else {
         if (product.stock > 0) {
           cart.push({ name: product.name, price: product.price, qty: 1 });
         } else {
-          alert('Produto sem estoque!');
+          showModal('Produto sem estoque!');
         }
       }
 
@@ -227,7 +275,7 @@
     function buyNow(index) {
       const p = products[index];
       if (p.stock > 0) {
-        alert(`Pedido de "${p.name}" feito! Pague R$${p.price.toFixed(2)} via PIX: 12992025025\nDepois, abra um ticket no Discord.`);
+        showModal(`Pedido de "${p.name}" feito! Pague R$${p.price.toFixed(2)} via PIX: 12992025025\nDepois, abra um ticket no Discord.`);
         p.stock--;
         renderProducts();
       }
@@ -278,10 +326,10 @@
           updateCartUI();
           renderProducts();
         } else {
-          msg.textContent = "❌ Erro ao enviar pedido.";
+          showModal("❌ Erro ao enviar pedido.");
         }
       } catch (e) {
-        document.getElementById('cart-message').textContent = "❌ Erro de conexão.";
+        showModal("❌ Erro de conexão.");
       }
     }
 
