@@ -80,7 +80,7 @@
     }
 
     main {
-      max-width: 700px;
+      max-width: 800px;
       margin: 20px auto;
       padding: 0 10px;
     }
@@ -155,27 +155,18 @@
       margin-left: 5px;
     }
 
-    .category-banner {
-      text-align: center;
-      margin: 30px auto;
+    .category-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
       cursor: pointer;
     }
 
-    .category-banner img {
-      width: 90%;
-      max-width: 400px;
+    .category-preview img {
+      width: 200px;
       border-radius: 10px;
-      border: 2px solid #a259ff;
-      transition: transform 0.2s;
-    }
-
-    .category-banner img:hover {
-      transform: scale(1.02);
-    }
-
-    .category-banner p {
-      margin-top: 10px;
-      font-size: 1.1rem;
+      margin-bottom: 10px;
     }
 
     @media (max-width: 600px) {
@@ -199,7 +190,7 @@
   <div id="category-form">
     <button onclick="playClickSound(); filterByCategory('brainrot')">🧠 Brainrot</button>
     <button onclick="playClickSound(); filterByCategory('grow')">🌱 Grow a Garden</button>
-    <button onclick="playClickSound(); filterByCategory('blox')">🍇 Blox Fruits (em breve)</button>
+    <button onclick="playClickSound(); filterByCategory('blox')">🍉 Blox Fruits</button>
   </div>
 
   <main id="product-list"></main>
@@ -227,6 +218,7 @@
       form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
     }
 
+    let cart = [];
     let activeCategory = null;
 
     const products = [
@@ -241,14 +233,17 @@
       { name: "La Grande Combinasion", price: 19, stock: 0, category: "brainrot" },
       { name: "Nuclearo Dinosauro", price: 30, stock: 0, category: "brainrot" },
       { name: "Garama and Madundung", price: 40, stock: 0, category: "brainrot" },
+
       // Grow a Garden
       { name: "Raccon", price: 29.99, stock: 3, category: "grow" },
-      { name: "Dragofly", price: 27, stock: 5, category: "grow" },
-      { name: "Butterfly", price: 23, stock: 2, category: "grow" },
-      { name: "Disco-Bee", price: 30, stock: 1, category: "grow" }
-    ];
+      { name: "Dragofly", price: 27.00, stock: 5, category: "grow" },
+      { name: "Butterfly", price: 23.00, stock: 2, category: "grow" },
+      { name: "Disco-Bee", price: 30.00, stock: 1, category: "grow" },
+      { name: "Madeira", price: 7.00, stock: 1, category: "grow" },
 
-    let cart = [];
+      // Blox Fruits (placeholder)
+      { name: "Em breve...", price: 0, stock: 0, category: "blox" },
+    ];
 
     function filterByCategory(category) {
       activeCategory = category;
@@ -260,10 +255,19 @@
       list.innerHTML = '';
 
       if (!activeCategory) {
+        // Mostrar imagens de categorias
         list.innerHTML = `
-          <div class="category-banner" onclick="filterByCategory('brainrot')">
-            <img src="https://media.discordapp.net/attachments/1238522799249948725/1399148920776556584/Screenshot_20250727_171925_Roblox.png?format=webp&quality=lossless" alt="Brainrot">
-            <p>🧠 Brainrot</p>
+          <div class="category-preview" onclick="filterByCategory('brainrot'); playClickSound();">
+            <img src="https://media.discordapp.net/attachments/1238522799249948725/1399148920776556584/Screenshot_20250727_171925_Roblox.png?format=webp&quality=lossless" alt="Brainrot" />
+            <strong>🧠 Brainrot</strong>
+          </div>
+          <div class="category-preview" onclick="filterByCategory('grow'); playClickSound();">
+            <img src="https://via.placeholder.com/200x150?text=Grow+a+Garden" alt="Grow a Garden" />
+            <strong>🌱 Grow a Garden</strong>
+          </div>
+          <div class="category-preview" onclick="filterByCategory('blox'); playClickSound();">
+            <img src="https://via.placeholder.com/200x150?text=Blox+Fruits" alt="Blox Fruits" />
+            <strong>🍉 Blox Fruits</strong>
           </div>
         `;
         return;
@@ -312,6 +316,7 @@
     function addToCart(index) {
       const product = products[index];
       const existing = cart.find(i => i.name === product.name);
+
       if (existing) {
         if (existing.qty < product.stock) {
           existing.qty++;
@@ -325,6 +330,7 @@
           alert('Produto sem estoque!');
         }
       }
+
       updateCartUI();
     }
 
