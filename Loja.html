@@ -1,258 +1,156 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZS Store</title>
   <style>
     body {
       margin: 0;
+      font-family: Arial, sans-serif;
       background-color: #121212;
       color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
+    }header {
+  background-color: #6a5acd;
+  padding: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
 
-    header {
-      background: linear-gradient(to right, #6a11cb, #2575fc);
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+.menu {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
 
-    header h1 {
-      margin: 0 auto;
-      font-size: 28px;
-    }
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
 
-    .menu {
-      position: absolute;
-      left: 15px;
-      display: flex;
-      gap: 15px;
-    }
+.categories {
+  position: fixed;
+  top: 60px;
+  left: 10px;
+  background-color: #1e1e1e;
+  padding: 10px;
+  border-radius: 8px;
+}
 
-    .menu a {
-      text-decoration: none;
-      color: white;
-      font-size: 24px;
-    }
+.main {
+  margin-left: 150px;
+  padding: 20px;
+}
 
-    .categories {
-      position: fixed;
-      top: 80px;
-      left: 10px;
-      text-align: left;
-    }
+.category-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
 
-    .categories label {
-      display: block;
-      margin-bottom: 10px;
-      cursor: pointer;
-    }
+.category-box {
+  text-align: center;
+}
 
-    .product {
-      border: 1px solid #333;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 10px;
-      width: 200px;
-      background-color: #1e1e1e;
-      display: inline-block;
-    }
+.category-box img {
+  width: 250px;
+  height: auto;
+  border-radius: 12px;
+  cursor: pointer;
+}
 
-    .product.hidden {
-      display: none;
-    }
+.category-box label {
+  display: block;
+  margin-top: 10px;
+  font-size: 18px;
+}
 
-    .product h3 {
-      margin: 10px 0 5px;
-    }
+.product {
+  background-color: #1e1e1e;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+}
 
-    .category-images {
-      margin-top: 50px;
-    }
-
-    .category-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 20px auto;
-      width: 250px;
-      background-color: #222;
-      border-radius: 10px;
-      padding: 10px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .category-card:hover {
-      transform: scale(1.05);
-    }
-
-    .category-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-
-    .category-card span {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    footer {
-      margin-top: 50px;
-      font-size: 14px;
-      color: #aaa;
-    }
   </style>
-</head>
-<body>
+</head><body>
   <header>
     <div class="menu">
-      <a href="index.html">🏠</a>
-      <a href="https://discord.com/widget?id=1388350454995484693&theme=dark" target="_blank">💬</a>
+      <a href="index.html">⌂</a>
+      <a href="https://discord.com/widget?id=1388350454995484693&theme=dark" target="_blank">🌧️</a>
     </div>
-    <h1>ZS Store</h1>
-  </header>
+    ZS Store
+  </header>  <div class="categories">
+    <div>
+      <input type="checkbox" id="brainrot" name="category" onclick="selectCategory('brainrot')">
+      <label for="brainrot">Brainrot</label>
+    </div>
+    <div>
+      <input type="checkbox" id="grow" name="category" onclick="selectCategory('grow')">
+      <label for="grow">Grow a Garden</label>
+    </div>
+    <div>
+      <input type="checkbox" id="blox" name="category" onclick="selectCategory('blox')">
+      <label for="blox">Blox Fruits</label>
+    </div>
+  </div>  <div class="main" id="mainContent">
+    <div class="category-selection" id="categorySelection">
+      <div class="category-box" onclick="selectCategory('brainrot')">
+        <img src="Screenshot_20250727_171925_Roblox.jpg" alt="Brainrot">
+        <label>Brainrot</label>
+      </div>
+      <div class="category-box" onclick="selectCategory('grow')">
+        <img src="download.jpeg" alt="Grow a Garden">
+        <label>Grow a Garden</label>
+      </div>
+      <div class="category-box">
+        <img src="download-1.jpeg" alt="Blox Fruits">
+        <label>Blox Fruits (em breve)</label>
+      </div>
+    </div><div id="products"></div>
 
-  <div class="categories">
-    <label><input type="checkbox" name="category" value="brainrot"> Brainrot</label>
-    <label><input type="checkbox" name="category" value="grow"> 🌱 Grow a Garden</label>
-    <label><input type="checkbox" name="category" value="blox"> 🍇 Blox Fruits (em breve)</label>
-  </div>
-
-  <div id="categoryImages" class="category-images">
-    <div class="category-card" onclick="selectCategory('brainrot')">
-      <img src="https://raw.githubusercontent.com/zszoro/Brainrot-Store/main/Screenshot_20250727_171925_Roblox.jpg" alt="Brainrot">
-      <span>🧠 Brainrot</span>
-    </div>
-
-    <div class="category-card" onclick="selectCategory('grow')">
-      <img src="https://raw.githubusercontent.com/zszoro/Brainrot-Store/main/download.jpeg" alt="Grow a Garden">
-      <span>🌱 Grow a Garden</span>
-    </div>
-
-    <div class="category-card" onclick="selectCategory('blox')">
-      <img src="https://raw.githubusercontent.com/zszoro/Brainrot-Store/main/download-1.jpeg" alt="Blox Fruits">
-      <span>🍇 Blox Fruits (em breve)</span>
-    </div>
-  </div>
-
-  <div id="products">
-    <!-- Produtos Brainrot -->
-    <div class="product brainrot hidden">
-      <h3>La Vaca Saturno Saturnita</h3>
-      <p>R$3,00</p>
-      <p>📦 Estoque: 1</p>
-    </div>
-    <div class="product brainrot hidden">
-      <h3>Chimpanzini Spiderini</h3>
-      <p>R$3,00</p>
-      <p>📦 Estoque: 0</p>
-    </div>
-    <div class="product brainrot hidden">
-      <h3>Torrtuginni Dragonfrutini</h3>
-      <p>R$4,00</p>
-      <p>📦 Estoque: 0</p>
-    </div>
-    <div class="product brainrot hidden">
-      <h3>Los Tralaleritos</h3>
-      <p>R$4,00</p>
-      <p>📦 Estoque: 0</p>
-    </div>
-    <div class="product brainrot hidden">
-      <h3>Las Tralaleritas</h3>
-      <p>R$5,00</p>
-      <p>📦 Estoque: 0</p>
-    </div>
-    <div class="product brainrot hidden">
-      <h3>Graipuss Medussi</h3>
-      <p>R$5,00</p>
-      <p>📦 Estoque: 0</p>
-    </div>
-    <div class="product brainrot hidden">
-      <h3>Pot Hotspot</h3>
-      <p>R$10,00</p>
-      <p>📦 Estoque: 0</p>
-    </div>
-    <div class="product brainrot hidden">
-      <h3>La Grande Combinasion</h3>
-      <p>R$19,00</p>
-      <p>📦 Estoque: 0</p>
-    </div>
-    <div class="product brainrot hidden">
-      <h3>Nuclearo Dinosauro</h3>
-      <p>R$30,00</p>
-      <p>📦 Estoque: 0</p>
-    </div>
-    <div class="product brainrot hidden">
-      <h3>Garama and Madundung</h3>
-      <p>R$40,00</p>
-      <p>📦 Estoque: 0</p>
-    </div>
-
-    <!-- Produtos Grow -->
-    <div class="product grow hidden">
-      <h3>Raccon</h3>
-      <p>R$29,99</p>
-      <p>📦 Estoque: 3</p>
-    </div>
-    <div class="product grow hidden">
-      <h3>Valor: R$7,00</h3>
-      <p>📦 Estoque: 1</p>
-    </div>
-    <div class="product grow hidden">
-      <h3>Dragofly</h3>
-      <p>R$27,00</p>
-      <p>📦 Estoque: 5</p>
-    </div>
-    <div class="product grow hidden">
-      <h3>Butterfly</h3>
-      <p>R$23,00</p>
-      <p>📦 Estoque: 2</p>
-    </div>
-    <div class="product grow hidden">
-      <h3>Disco-Bee</h3>
-      <p>R$30,00</p>
-      <p>📦 Estoque: 1</p>
-    </div>
-  </div>
-
-  <footer>© 2025 ZS Store</footer>
-
-  <script>
-    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="category"]');
-    const products = document.querySelectorAll('.product');
-    const categoryImages = document.getElementById('categoryImages');
-
-    checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
-        const selected = Array.from(checkboxes).filter(i => i.checked).map(i => i.value);
-        updateProducts(selected);
-      });
-    });
-
-    function updateProducts(selectedCategories) {
-      if (selectedCategories.length === 0) {
-        categoryImages.style.display = 'block';
-      } else {
-        categoryImages.style.display = 'none';
-      }
-
-      products.forEach(product => {
-        const match = selectedCategories.some(cat => product.classList.contains(cat));
-        product.classList.toggle('hidden', !match);
-      });
-    }
+  </div>  <script>
+    const products = {
+      brainrot: [
+        { name: 'Lá Vaca Saturno Saturnita', price: 'R$3,00', stock: 1 },
+        { name: 'Chimpanzini Spiderini', price: 'R$3,00', stock: 0 },
+        { name: 'Torrtuginni Dragonfrutini', price: 'R$4,00', stock: 0 },
+        { name: 'Los Tralaleritos', price: 'R$4,00', stock: 0 },
+        { name: 'Las Tralaleritas', price: 'R$5,00', stock: 0 },
+        { name: 'Graipuss Medussi', price: 'R$5,00', stock: 0 },
+        { name: 'Pot Hotspot', price: 'R$10,00', stock: 0 },
+        { name: 'La Grande Combinasion', price: 'R$19,00', stock: 0 },
+        { name: 'Nuclearo Dinosauro', price: 'R$30,00', stock: 0 },
+        { name: 'Garama and Madundung', price: 'R$40,00', stock: 0 }
+      ],
+      grow: [
+        { name: 'Raccon', price: 'R$29,99', stock: 3 },
+        { name: 'Dragofly', price: 'R$27,00', stock: 5 },
+        { name: 'Butterfly', price: 'R$23,00', stock: 2 },
+        { name: 'Disco-Bee', price: 'R$30,00', stock: 1 },
+      ],
+      blox: []
+    };
 
     function selectCategory(cat) {
-      checkboxes.forEach(cb => cb.checked = cb.value === cat);
-      updateProducts([cat]);
+      document.querySelectorAll('input[name="category"]').forEach(el => el.checked = false);
+      document.getElementById(cat).checked = true;
+
+      const productsDiv = document.getElementById("products");
+      const selectionDiv = document.getElementById("categorySelection");
+      productsDiv.innerHTML = "";
+      selectionDiv.style.display = "none";
+
+      products[cat].forEach(prod => {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.innerHTML = `<strong>${prod.name}</strong><br>${prod.price} | Estoque: 📦 ${prod.stock}`;
+        productsDiv.appendChild(div);
+      });
     }
-  </script>
-</body>
-</html>
+  </script></body></html>
