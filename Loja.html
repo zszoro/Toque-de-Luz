@@ -31,7 +31,8 @@
       gap: 10px;
     }
 
-    #home-icon, #discord-icon {
+    #home-icon,
+    #discord-icon {
       font-size: 1.3rem;
       color: white;
       text-decoration: none;
@@ -155,33 +156,30 @@
       margin-left: 5px;
     }
 
-    .categorias-iniciais {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    .categoria-card {
+    .category-image {
+      margin: 20px auto;
+      max-width: 400px;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.2s ease;
     }
 
-    .categoria-card:hover {
-      transform: scale(1.03);
-    }
-
-    .categoria-card img {
-      max-width: 250px;
+    .category-image img {
+      width: 100%;
       border-radius: 10px;
-      border: 2px solid #a259ff;
+    }
+
+    .category-image p {
+      margin-top: 10px;
+      font-size: 1.2rem;
     }
 
     @media (max-width: 600px) {
       #cart-panel {
         width: 100%;
+      }
+
+      .category-image {
+        max-width: 90%;
       }
     }
   </style>
@@ -229,6 +227,7 @@
     }
 
     const products = [
+      // Brainrot
       { name: "Lá Vaca Saturno Saturnita", price: 3, stock: 1, category: "brainrot" },
       { name: "Chimpanzini Spiderini", price: 3, stock: 0, category: "brainrot" },
       { name: "Torrtuginni Dragonfrutini", price: 4, stock: 0, category: "brainrot" },
@@ -239,11 +238,11 @@
       { name: "La Grande Combinasion", price: 19, stock: 0, category: "brainrot" },
       { name: "Nuclearo Dinosauro", price: 30, stock: 0, category: "brainrot" },
       { name: "Garama and Madundung", price: 40, stock: 0, category: "brainrot" },
-
+      // Grow a Garden
       { name: "Raccon", price: 29.99, stock: 3, category: "grow" },
-      { name: "Dragofly", price: 27.00, stock: 5, category: "grow" },
-      { name: "Butterfly", price: 23.00, stock: 2, category: "grow" },
-      { name: "Disco-Bee", price: 30.00, stock: 1, category: "grow" }
+      { name: "Dragofly", price: 27, stock: 5, category: "grow" },
+      { name: "Butterfly", price: 23, stock: 2, category: "grow" },
+      { name: "Disco-Bee", price: 30, stock: 1, category: "grow" },
     ];
 
     let cart = [];
@@ -260,19 +259,17 @@
 
       if (!activeCategory) {
         list.innerHTML = `
-          <div class="categorias-iniciais">
-            <div class="categoria-card" onclick="playClickSound(); filterByCategory('brainrot')">
-              <img src="https://media.discordapp.net/attachments/1238522799249948725/1399148920776556584/Screenshot_20250727_171925_Roblox.png?format=webp&quality=lossless" alt="Brainrot">
-              <p>🧠 Brainrot</p>
-            </div>
-            <div class="categoria-card" onclick="playClickSound(); filterByCategory('grow')">
-              <img src="https://media.discordapp.net/attachments/1238522799249948725/1399224722792970381/IMG_20250728_140941.jpg?format=webp&quality=lossless" alt="Grow a Garden">
-              <p>🌱 Grow a Garden</p>
-            </div>
-            <div class="categoria-card" onclick="playClickSound(); filterByCategory('blox')">
-              <img src="https://media.discordapp.net/attachments/1238522799249948725/1399224723120298056/IMG_20250728_140945.jpg?format=webp&quality=lossless" alt="Blox Fruits">
-              <p>🍉 Blox Fruits (em breve)</p>
-            </div>
+          <div class="category-image" onclick="playClickSound(); filterByCategory('brainrot')">
+            <img src="https://i.imgur.com/0EvK7zX.png" alt="Brainrot">
+            <p>🧠 Brainrot</p>
+          </div>
+          <div class="category-image" onclick="playClickSound(); filterByCategory('grow')">
+            <img src="https://i.imgur.com/V6Xj7km.jpg" alt="Grow a Garden">
+            <p>🌱 Grow a Garden</p>
+          </div>
+          <div class="category-image" onclick="playClickSound(); filterByCategory('blox')">
+            <img src="https://i.imgur.com/Mng6a4g.jpg" alt="Blox Fruits">
+            <p>🍉 Blox Fruits (em breve)</p>
           </div>
         `;
         return;
