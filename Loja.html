@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ZS Store</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       background-color: #121212;
-      color: white;
+      color: #fff;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       text-align: center;
@@ -16,60 +16,45 @@
 
     header {
       background-color: #6a0dad;
-      padding: 10px 0;
+      padding: 15px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      position: relative;
     }
 
     header h1 {
       margin: 0;
+      font-size: 24px;
     }
 
     .menu-icons {
-      position: absolute;
-      left: 10px;
       display: flex;
-      gap: 10px;
+      align-items: center;
+      gap: 15px;
     }
 
     .menu-icons a {
       color: white;
-      font-size: 20px;
       text-decoration: none;
-    }
-
-    .menu-icons a:hover {
-      color: #ccc;
-    }
-
-    .formulario {
-      margin: 15px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .formulario label {
-      font-size: 18px;
+      font-size: 22px;
     }
 
     .categorias-iniciais {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
       margin-top: 30px;
     }
 
     .categoria-card {
       background-color: #1e1e1e;
+      border-radius: 12px;
       padding: 10px;
-      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 0 10px #00000099;
       cursor: pointer;
-      width: 220px;
-      transition: transform 0.3s;
+      transition: transform 0.2s;
     }
 
     .categoria-card:hover {
@@ -85,124 +70,46 @@
       margin: 10px 0 0;
       font-weight: bold;
     }
-
-    .produtos {
-      display: none;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .produto {
-      background-color: #1e1e1e;
-      padding: 15px;
-      border-radius: 8px;
-      width: 220px;
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-    }
-
-    .produto h3 {
-      margin: 0 0 10px;
-    }
-
-    .produto p {
-      margin: 5px 0;
-    }
   </style>
 </head>
 <body>
+
   <header>
     <div class="menu-icons">
-      <a href="Loja.html" title="Início">🏠</a>
-      <a href="https://discord.com/widget?id=1388350454995484693&theme=dark" target="_blank" title="Discord">💬</a>
+      <a href="index.html">🏠</a>
+      <a href="#" onclick="toggleMenu()">☰</a>
+      <a href="https://discord.com/widget?id=1388350454995484693&theme=dark" target="_blank">💬</a>
     </div>
     <h1>ZS Store</h1>
+    <div style="width: 50px;"></div>
   </header>
 
-  <div class="formulario">
-    <label><input type="checkbox" id="brainrot" onclick="filtrarCategoria()"> Brainrot</label>
-    <label><input type="checkbox" id="grow" onclick="filtrarCategoria()"> Grow a Garden</label>
-    <label><input type="checkbox" id="blox" onclick="filtrarCategoria()"> Blox Fruits (em breve)</label>
-  </div>
-
-  <div id="categoriasIniciais" class="categorias-iniciais">
+  <div class="categorias-iniciais">
     <div class="categoria-card" onclick="selecionarCategoria('brainrot')">
       <img src="Screenshot_20250727_171925_Roblox.jpg" alt="Brainrot" />
       <p>🧠 Brainrot</p>
     </div>
+
     <div class="categoria-card" onclick="selecionarCategoria('grow')">
-      <img src="grow-a-garden.jpg" alt="Grow a Garden" />
+      <img src="grow_garden.jpg" alt="Grow a Garden" />
       <p>🌱 Grow a Garden</p>
     </div>
-    <div class="categoria-card" onclick="selecionarCategoria('blox')">
-      <img src="https://via.placeholder.com/220x140?text=Blox+Fruits" alt="Blox Fruits" />
+
+    <div class="categoria-card">
+      <img src="blox_soon.jpg" alt="Blox Fruits" />
       <p>🍉 Blox Fruits (em breve)</p>
     </div>
   </div>
 
-  <div id="produtos" class="produtos"></div>
-
   <script>
-    const todosProdutos = [
-      // Brainrot
-      { nome: "Lá Vaca Saturno Saturnita", preco: "R$3,00", estoque: 1, categoria: "brainrot" },
-      { nome: "Chimpanzini Spiderini", preco: "R$3,00", estoque: 0, categoria: "brainrot" },
-      { nome: "Torrtuginni Dragonfrutini", preco: "R$4,00", estoque: 0, categoria: "brainrot" },
-      { nome: "Los Tralaleritos", preco: "R$4,00", estoque: 0, categoria: "brainrot" },
-      { nome: "Las Tralaleritas", preco: "R$5,00", estoque: 0, categoria: "brainrot" },
-      { nome: "Graipuss Medussi", preco: "R$5,00", estoque: 0, categoria: "brainrot" },
-      { nome: "Pot Hotspot", preco: "R$10,00", estoque: 0, categoria: "brainrot" },
-      { nome: "La Grande Combinasion", preco: "R$19,00", estoque: 0, categoria: "brainrot" },
-      { nome: "Nuclearo Dinosauro", preco: "R$30,00", estoque: 0, categoria: "brainrot" },
-      { nome: "Garama and Madundung", preco: "R$40,00", estoque: 0, categoria: "brainrot" },
-      // Grow a Garden
-      { nome: "Raccon", preco: "R$29,99", estoque: 3, categoria: "grow" },
-      { nome: "Dragofly", preco: "R$27,00", estoque: 5, categoria: "grow" },
-      { nome: "Butterfly", preco: "R$23,00", estoque: 2, categoria: "grow" },
-      { nome: "Disco-Bee", preco: "R$30,00", estoque: 1, categoria: "grow" }
-    ];
-
-    function filtrarCategoria() {
-      const brainrot = document.getElementById("brainrot").checked;
-      const grow = document.getElementById("grow").checked;
-      const blox = document.getElementById("blox").checked;
-      const produtosContainer = document.getElementById("produtos");
-      const categoriasIniciais = document.getElementById("categoriasIniciais");
-
-      const categoriasSelecionadas = [];
-      if (brainrot) categoriasSelecionadas.push("brainrot");
-      if (grow) categoriasSelecionadas.push("grow");
-      if (blox) categoriasSelecionadas.push("blox");
-
-      if (categoriasSelecionadas.length === 0) {
-        produtosContainer.style.display = "none";
-        categoriasIniciais.style.display = "flex";
-        return;
-      }
-
-      categoriasIniciais.style.display = "none";
-      produtosContainer.innerHTML = "";
-      const filtrados = todosProdutos.filter(p => categoriasSelecionadas.includes(p.categoria));
-
-      filtrados.forEach(prod => {
-        const div = document.createElement("div");
-        div.className = "produto";
-        div.innerHTML = `
-          <h3>${prod.nome}</h3>
-          <p>💰 ${prod.preco}</p>
-          <p>📦 Estoque: ${prod.estoque}</p>
-        `;
-        produtosContainer.appendChild(div);
-      });
-
-      produtosContainer.style.display = "flex";
+    function toggleMenu() {
+      alert("Menu futuro aqui!");
     }
 
-    function selecionarCategoria(cat) {
-      document.getElementById(cat).checked = true;
-      filtrarCategoria();
+    function selecionarCategoria(categoria) {
+      window.location.href = "Loja.html?categoria=" + categoria;
     }
   </script>
+
 </body>
 </html>
