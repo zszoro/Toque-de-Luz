@@ -1,50 +1,95 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>✨️Toque de Luz✨️- Início</title>
-  <style>
-    body {
-      margin: 0;
-      background: #0c0c0c;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    p {
-      max-width: 400px;
-      margin-bottom: 40px;
-      color: #ccc;
-    }
-    a {
-      text-decoration: none;
-      background: #a259ff;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      transition: background 0.3s;
-    }
-    a:hover {
-      background: #8a3fd9;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toque de Luz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>✨️Toque de Luz✨️</h1>
-  <p>O Reiki é uma terapia japonesa natural que usa a imposição de mãos para restaurar o equilíbrio físico, emocional e mental
-  • Compravado pela usp
-  • ultilizada pelo sus</p>
-  <a href="Loja.html">Ver mais ➕️</a>
+<body class="font-sans text-gray-800 scroll-smooth">
+
+  <!-- Cabeçalho -->
+  <header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-lg shadow-sm z-50">
+    <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-purple-700">Toque de Luz</h1>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#inicio" class="hover:text-purple-600">Início</a>
+        <a href="#sobre" class="hover:text-purple-600">Sobre</a>
+        <a href="#servicos" class="hover:text-purple-600">Serviços</a>
+        <a href="#contato" class="hover:text-purple-600">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Início -->
+  <section id="inicio" class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-purple-100 to-white px-6">
+    <h2 class="text-4xl md:text-5xl font-semibold mb-4 text-purple-700 transition-all duration-1000 ease-in-out">
+      Energia, Equilíbrio e Bem-Estar
+    </h2>
+    <p class="text-lg text-gray-700 max-w-2xl mb-6">
+      Conecte-se com sua energia interior e encontre harmonia através do Reiki.
+    </p>
+    <a href="#contato" class="bg-purple-700 hover:bg-purple-800 text-white text-lg px-6 py-3 rounded-full inline-block">
+      Agende sua sessão
+    </a>
+  </section>
+
+  <!-- Sobre -->
+  <section id="sobre" class="py-20 px-6 bg-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-3xl font-semibold text-purple-700 mb-6">Sobre Mim</h3>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        Aqui você pode adicionar o texto sobre sua mãe — falando sobre sua jornada no Reiki, filosofia de vida e propósito em ajudar outras pessoas a encontrarem equilíbrio e luz interior.
+      </p>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section id="servicos" class="py-20 px-6 bg-purple-50">
+    <div class="max-w-6xl mx-auto text-center">
+      <h3 class="text-3xl font-semibold text-purple-700 mb-6">Serviços e Valores</h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl shadow-md bg-white p-6">
+          <h4 class="text-xl font-semibold mb-2 text-purple-700">Sessão 1</h4>
+          <p class="text-gray-600 mb-4">Descrição breve do serviço 1 e seus benefícios energéticos.</p>
+          <span class="text-lg font-medium text-purple-800">R$ ---</span>
+        </div>
+        <div class="rounded-2xl shadow-md bg-white p-6">
+          <h4 class="text-xl font-semibold mb-2 text-purple-700">Sessão 2</h4>
+          <p class="text-gray-600 mb-4">Descrição breve do serviço 2 e seus benefícios energéticos.</p>
+          <span class="text-lg font-medium text-purple-800">R$ ---</span>
+        </div>
+        <div class="rounded-2xl shadow-md bg-white p-6">
+          <h4 class="text-xl font-semibold mb-2 text-purple-700">Sessão 3</h4>
+          <p class="text-gray-600 mb-4">Descrição breve do serviço 3 e seus benefícios energéticos.</p>
+          <span class="text-lg font-medium text-purple-800">R$ ---</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="py-20 px-6 bg-white text-center">
+    <h3 class="text-3xl font-semibold text-purple-700 mb-4">Entre em Contato</h3>
+    <p class="text-lg text-gray-700 mb-8">Agende sua sessão ou tire suas dúvidas.</p>
+    <div class="flex justify-center space-x-4">
+      <a href="https://wa.me/5599999999999" target="_blank" class="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2 px-4 py-2 rounded">
+        📞 WhatsApp
+      </a>
+      <a href="https://instagram.com/seudoinstagram" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white flex items-center gap-2 px-4 py-2 rounded">
+        📸 Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="py-6 bg-purple-700 text-white text-center">
+    <p>© <span id="year"></span> Toque de Luz — Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
 </body>
 </html>
