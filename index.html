@@ -9,27 +9,38 @@
 <body class="font-sans text-gray-800 scroll-smooth">
 
   <!-- Cabeçalho -->
-  <header class="fixed top-0 left-0 w-full bg-[#c6e5b1]/100 backdrop-blur-lg shadow-sm z-50">
-    <div class="max-w-6xl mx-auto flex items-center justify-center p-4 relative">
-      <!-- Imagem no canto superior esquerdo -->
-      <img src="https://i.imgur.com/5kbgQXx.jpeg" alt="Toque de Luz" class="w-20 h-20 object-cover absolute top-2 left-4 rounded-full">
+  <header class="fixed top-0 left-0 w-full bg-[#c6e5b1]/80 backdrop-blur-lg shadow-sm z-50">
+    <div class="max-w-6xl mx-auto flex items-center justify-between p-4 flex-wrap">
       
+      <!-- Botão do menu -->
+      <button id="menu-button" onclick="playClickSound(); toggleCategoryForm()" 
+              class="text-green-700 font-semibold hover:text-green-900 mb-2 sm:mb-0">
+        ☰ Categorias
+      </button>
+
       <!-- Título centralizado -->
-      <h1 class="text-2xl font-bold text-green-700">Toque de Luz</h1>
+      <h1 class="text-2xl font-bold text-green-700 flex-grow text-center">
+        Toque de Luz
+      </h1>
+
+      <!-- Imagem no canto direito -->
+      <img src="https://i.imgur.com/5kbgQXx.jpeg" 
+           alt="Toque de Luz" 
+           class="w-20 h-20 object-cover rounded-full mb-2 sm:mb-0">
     </div>
 
     <!-- Menu de navegação centralizado -->
     <nav class="hidden md:flex space-x-6 justify-center mb-2">
-      <a href="#inicio" class="hover:text-purple-600">Início</a>
-      <a href="#sobre" class="hover:text-purple-600">Sobre</a>
-      <a href="#servicos" class="hover:text-purple-600">Serviços</a>
-      <a href="#contato" class="hover:text-purple-600">Contato</a>
+      <a href="#inicio" class="hover:text-green-600">Início</a>
+      <a href="#sobre" class="hover:text-green-600">Sobre</a>
+      <a href="#servicos" class="hover:text-green-600">Serviços</a>
+      <a href="#contato" class="hover:text-green-600">Contato</a>
     </nav>
   </header>
 
   <!-- Início -->
-  <section id="inicio" class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-purple-100 to-white px-6 pt-24">
-    <h2 class="text-4xl md:text-5xl font-semibold mb-4 text-green-700 transition-all duration-1000 ease-in-out">
+  <section id="inicio" class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-purple-100 to-white px-6 pt-32">
+    <h2 class="text-4xl md:text-5xl font-semibold mb-4 text-purple-700 transition-all duration-1000 ease-in-out">
       Energia, Equilíbrio e Bem-Estar
     </h2>
     <p class="text-lg text-gray-700 max-w-2xl mb-6">
@@ -42,7 +53,7 @@
       <li>Comprovado pela USP</li>
       <li>Usado pelo SUS</li>
     </ul>
-    <a href="#sobre" class="bg-green-700 hover:bg-green-500 text-white text-lg px-6 py-3 rounded-full inline-block">
+    <a href="#sobre" class="bg-purple-700 hover:bg-purple-800 text-white text-lg px-6 py-3 rounded-full inline-block">
       Saiba Mais ➕️ 
     </a>
   </section>
@@ -50,7 +61,7 @@
   <!-- Sobre -->
   <section id="sobre" class="py-20 px-6 bg-white">
     <div class="max-w-4xl mx-auto text-center">
-      <h3 class="text-3xl font-semibold text-green-700 mb-6">Sobre Mim</h3>
+      <h3 class="text-3xl font-semibold text-purple-700 mb-6">Sobre Mim</h3>
       <p class="text-lg text-gray-700 leading-relaxed">
         Com 25 anos de experiência como professora na rede municipal de Pindamonhangaba, sou uma educadora apaixonada e movida pela inclusão, o que me fez perceber que além da educação e ensino em sala de aula podia, e precisava fazer mais por esses estudantes. Comecei essa jornada como intérprete de Libras.
         Porém além dos alunos surdos outras necessidades me chamaram a atenção, e fui em busca de algo que possa cuidar, e proporcionar bem-estar. Comecei a estudar o Reiki, com um professor e grupo particular, percebi que além do bem-estar, o Reiki proporciona uma série de benefícios que atuam nos níveis físico, mental e emocional. 
@@ -65,26 +76,26 @@
   <!-- Serviços -->
   <section id="servicos" class="py-20 px-6 bg-purple-50">
     <div class="max-w-6xl mx-auto text-center">
-      <h3 class="text-3xl font-semibold text-green-700 mb-6">Serviços e Valores</h3>
+      <h3 class="text-3xl font-semibold text-purple-700 mb-6">Serviços e Valores</h3>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="rounded-2xl shadow-md bg-white p-6">
-          <h4 class="text-xl font-semibold mb-2 text-green-700">Reiki</h4>
+          <h4 class="text-xl font-semibold mb-2 text-purple-700">Reiki</h4>
           <p class="text-gray-600 mb-4"></p>
-          <a href="reiki1.html" class="bg-green-700 hover:bg-purple-800 text-white text-lg px-6 py-3 rounded-full inline-block">
+          <a href="reiki1.html" class="bg-purple-700 hover:bg-purple-800 text-white text-lg px-6 py-3 rounded-full inline-block">
             Ver Sobre
           </a>
         </div>
         <div class="rounded-2xl shadow-md bg-white p-6">
-          <h4 class="text-xl font-semibold mb-2 text-green-700">Massagem relaxante</h4>
+          <h4 class="text-xl font-semibold mb-2 text-purple-700">Massagem relaxante</h4>
           <p class="text-gray-600 mb-4">Descrição breve do serviço 2 e seus benefícios energéticos.</p>
-          <a href="massagem.html" class="bg-green-700 hover:bg-purple-800 text-white text-lg px-6 py-3 rounded-full inline-block">
+          <a href="massagem.html" class="bg-purple-700 hover:bg-purple-800 text-white text-lg px-6 py-3 rounded-full inline-block">
             Ver Sobre
           </a>
         </div>
         <div class="rounded-2xl shadow-md bg-white p-6">
-          <h4 class="text-xl font-semibold mb-2 text-green-700">Óleos Essenciais</h4>
+          <h4 class="text-xl font-semibold mb-2 text-purple-700">Óleos Essenciais</h4>
           <p class="text-gray-600 mb-4">Descrição breve do serviço 3 e seus benefícios energéticos.</p>
-          <a href="oleo.html" class="bg-green-700 hover:bg-purple-800 text-white text-lg px-6 py-3 rounded-full inline-block">
+          <a href="oleo.html" class="bg-purple-700 hover:bg-purple-800 text-white text-lg px-6 py-3 rounded-full inline-block">
             Ver Sobre
           </a>
         </div>
@@ -94,7 +105,7 @@
 
   <!-- Contato -->
   <section id="contato" class="py-20 px-6 bg-white text-center">
-    <h3 class="text-3xl font-semibold text-green-700 mb-4">Entre em Contato</h3>
+    <h3 class="text-3xl font-semibold text-purple-700 mb-4">Entre em Contato</h3>
     <p class="text-lg text-gray-700 mb-8">Agende sua sessão ou tire suas dúvidas.</p>
     <div class="flex justify-center space-x-4">
       <a href="https://wa.me/5512997685503" target="_blank" class="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2 px-4 py-2 rounded">
