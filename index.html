@@ -9,43 +9,44 @@
 <body class="font-sans text-gray-800 scroll-smooth">
 
   <!-- Cabeçalho -->
-  <header class="fixed top-0 left-0 w-full bg-[#c6e5b1]/80 backdrop-blur-lg shadow-sm z-50">
-    <div class="max-w-6xl mx-auto flex items-center justify-between p-2 flex-wrap relative">
+  <header class="fixed top-0 left-0 w-full bg-[#c6e5b1]/80 backdrop-blur-lg shadow-sm z-50 overflow-visible">
+    <div class="max-w-6xl mx-auto flex items-center justify-between p-1 flex-wrap relative">
 
       <!-- Botão do menu -->
       <button id="menu-button" onclick="toggleCategoryForm()" 
-              class="text-green-700 font-semibold hover:text-green-900">
+              class="text-green-700 font-semibold hover:text-green-900 text-sm">
         ☰ Categorias
       </button>
 
       <!-- Título centralizado -->
-      <h1 class="text-xl sm:text-2xl font-bold text-green-700 flex-grow text-center">
+      <h1 class="text-lg font-bold text-green-700 flex-grow text-center">
         Toque de Luz
       </h1>
 
-      <!-- Imagem no canto direito -->
+      <!-- Imagem maior sem aumentar o header -->
       <img src="https://i.imgur.com/5kbgQXx.jpeg" 
            alt="Toque de Luz" 
-           class="w-16 h-16 object-cover rounded-full">
+           class="w-24 h-24 object-cover rounded-full -mt-4">
+      
+      <!-- Menu de categorias -->
+      <div id="category-form" class="hidden absolute top-full left-0 bg-white shadow-lg rounded-md p-6 w-64 z-50 mt-1">
+        <ul class="flex flex-col space-y-3 text-lg">
+          <li><a href="#inicio" class="text-green-700 hover:text-green-900 py-2 block">Início</a></li>
+          <li><a href="#sobre" class="text-green-700 hover:text-green-900 py-2 block">Sobre</a></li>
+          <li><a href="#servicos" class="text-green-700 hover:text-green-900 py-2 block">Serviços</a></li>
+          <li><a href="#contato" class="text-green-700 hover:text-green-900 py-2 block">Contato</a></li>
+        </ul>
+      </div>
+
     </div>
 
-    <!-- Menu de navegação centralizado (desktop) -->
-    <nav class="hidden md:flex space-x-6 justify-center mb-2">
+    <!-- Menu de navegação desktop -->
+    <nav class="hidden md:flex space-x-6 justify-center mt-2">
       <a href="#inicio" class="hover:text-green-600">Início</a>
       <a href="#sobre" class="hover:text-green-600">Sobre</a>
       <a href="#servicos" class="hover:text-green-600">Serviços</a>
       <a href="#contato" class="hover:text-green-600">Contato</a>
     </nav>
-
-    <!-- Menu de Categorias (mobile / botão) -->
-    <div id="category-form" class="hidden absolute top-full left-2 bg-white shadow-md rounded-md p-4 z-50">
-      <ul class="flex flex-col space-y-2">
-        <li><a href="#inicio" class="text-green-700 hover:text-green-900">Início</a></li>
-        <li><a href="#sobre" class="text-green-700 hover:text-green-900">Sobre</a></li>
-        <li><a href="#servicos" class="text-green-700 hover:text-green-900">Serviços</a></li>
-        <li><a href="#contato" class="text-green-700 hover:text-green-900">Contato</a></li>
-      </ul>
-    </div>
   </header>
 
   <!-- Início -->
