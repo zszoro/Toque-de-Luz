@@ -9,8 +9,8 @@
 <body class="font-sans text-gray-800 scroll-smooth">
 
   <!-- Cabeçalho -->
-  <header class="fixed top-0 left-0 w-full bg-[#c6e5b1]/80 backdrop-blur-lg shadow-sm z-50 overflow-visible">
-  <div class="max-w-6xl mx-auto flex items-center justify-between p-1 flex-wrap relative">
+<header class="fixed top-0 left-0 w-full bg-[#c6e5b1]/80 backdrop-blur-lg shadow-sm z-50">
+  <div class="max-w-6xl mx-auto flex items-center justify-between p-1 h-16 relative">
 
     <!-- Botão do menu -->
     <button id="menu-button" onclick="toggleCategoryForm()" 
@@ -19,17 +19,15 @@
     </button>
 
     <!-- Título centralizado -->
-    <h1 class="text-lg font-bold text-green-700 flex-grow text-center">
+    <h1 class="text-base font-bold text-green-700 flex-grow text-center">
       Toque de Luz
     </h1>
 
-    <!-- Imagem maior, centralizada verticalmente no header -->
-    <div class="flex items-center justify-center relative">
-      <img src="https://i.imgur.com/5kbgQXx.jpeg" 
-           alt="Toque de Luz" 
-           class="w-24 h-24 object-cover rounded-full">
-    </div>
-
+    <!-- Imagem maior sem aumentar o header -->
+    <img src="https://i.imgur.com/5kbgQXx.jpeg" 
+         alt="Toque de Luz" 
+         class="w-16 h-16 object-cover rounded-full">
+    
     <!-- Menu de categorias -->
     <div id="category-form" class="hidden absolute top-full left-0 bg-white shadow-lg rounded-md p-6 w-64 z-50 mt-1">
       <ul class="flex flex-col space-y-3 text-lg">
@@ -43,13 +41,13 @@
   </div>
 
   <!-- Menu de navegação desktop -->
-  <nav class="hidden md:flex space-x-6 justify-center mt-2">
+  <nav class="hidden md:flex space-x-6 justify-center mt-1">
     <a href="#inicio" class="hover:text-green-600">Início</a>
     <a href="#sobre" class="hover:text-green-600">Sobre</a>
     <a href="#servicos" class="hover:text-green-600">Serviços</a>
     <a href="#contato" class="hover:text-green-600">Contato</a>
   </nav>
-  </header>
+</header>
 
   <!-- Início -->
   <section id="inicio" class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-purple-100 to-white px-6 pt-32">
