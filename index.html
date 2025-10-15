@@ -13,8 +13,8 @@
 <body class="font-sans text-gray-800 scroll-smooth">
 
   <!-- Cabeçalho -->
-  <header class="fixed top-0 left-0 w-full bg-[#c6e5b1]/80 backdrop-blur-lg shadow-sm z-50">
-    <div class="max-w-6xl mx-auto flex items-center justify-between p-1 h-16 relative">
+  <header class="fixed top-0 left-0 w-full bg-[#c6e5b1]/80 backdrop-blur-lg shadow-sm z-50 h-16">
+    <div class="max-w-6xl mx-auto flex items-center justify-between p-1 h-full relative">
 
       <!-- Botão do menu -->
       <button id="menu-button" onclick="toggleCategoryForm()" 
@@ -43,8 +43,7 @@
   </header>
 
   <!-- Menu de Categorias (mobile / botão) -->
-  <div id="category-form" class="hidden fixed 
-      top-[4.5rem] md:top-[5rem] left-0 w-[200px] h-[calc(100vh-4.5rem)] bg-white z-50 overflow-auto shadow-lg p-6">
+  <div id="category-form" class="hidden fixed top-16 left-0 w-[200px] h-[calc(100vh-4rem)] bg-white z-50 overflow-auto shadow-lg p-6">
     <ul class="flex flex-col space-y-4 text-lg">
       <li><a href="#inicio" class="text-green-700 hover:text-green-900 py-2 block">Início</a></li>
       <li><a href="#sobre" class="text-green-700 hover:text-green-900 py-2 block">Sobre</a></li>
