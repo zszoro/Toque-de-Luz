@@ -146,5 +146,39 @@ Sou uma profissional com formação em diversas terapias holísticas. Como Mestr
       <!-- Botão WhatsApp corrigido -->
       <a href="https://wa.me/5512997685503" target="_blank" 
          class="bg-gray-600 hover:bg-green-700 text-white flex items-center gap-2 px-5 py-2 rounded">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-6 h-6 fill-current">
-          <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.822.736 5.471 2.016 7.77L0 32l8.413-2.004C10.529 31.264 13.178 32 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm8.551 22.551c-.377 1.056-2.187 2.032-2.762 2.138-.726.125-1.26.185-3.8-1.113-2.522-1.294-4.167-3.642-4.282-3.752-.115-.11-2.916-3.354-3.159-5.21-.24-1.855.999-2.6 1.396-2.972.38-.362.854-.452 1.137-.452.285 0 .572 0 .822.003.25.004.58-.094.917.696.336.79 1.142 2.736 1.243 2.935.102.198.168.44.008.712-.16.273-.236.442-.471.68-.236.238-.499.528-.713.71-.214.182-.438.382-.186.75.253.368 1.115 1.834 2.395 2.967 1.278 1.134 2.344 1.49 2.69 1.662.345.171.547.144.748-.086.201-.23.872-1.012 1.108-1.356.
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 448 512">
+          <path d="M380.9 97.1C339-2.7 254.2-13.1 190.4 16.1c-63.9 29.2-104.2 99.7-104.2 179.3 0 31.7 8.3 62.5 24 89l-28 102.2 104.9-27.5c26.2 14.3 55.7 22 86.3 22 79.7 0 149.7-40.3 179-104.3 29.3-63.8 19-148.6-31.6-190.6zM224 336c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm38.9-105.1c-5.7-2.9-33.5-16.5-38.7-18.3-5.2-1.8-9-2.9-12.8 2.9-3.7 5.7-14.3 18.3-17.5 22-3.2 3.7-6.4 4.2-11.9 1.3-5.7-2.9-24.1-8.9-45.9-28.2-17-15.1-28.4-33.7-31.7-39.4-3.3-5.7-.4-8.8 2.5-11.7 2.6-2.6 5.7-6.8 8.6-10.2 2.9-3.3 3.9-5.7 5.7-9.5 1.8-3.7.9-7-.5-9.8-1.4-2.8-12.8-30.9-17.5-42.3-4.6-11-9.4-9.5-12.8-9.7-3.3-.2-7.1-.2-10.8-.2s-9 1.3-13.7 6.4c-4.6 5.2-17.7 17.2-17.7 41.9s18.1 48.6 20.7 52c2.6 3.2 35.8 54.6 86.7 76.6 12.1 5.2 21.5 8.3 28.9 10.6 12.1 3.9 23.1 3.3 31.8 2 9.7-1.5 33.5-13.7 38.2-27 4.6-13.4 4.6-24.8 3.2-27.1-1.4-2.3-5.2-3.7-10.9-6.6z"/>
+        </svg>
+        WhatsApp
+      </a>
+
+      <!-- Botão Instagram -->
+      <a href="https://www.instagram.com/_toquedeluzz_?igsh=b2o2bDc3aXE2bGlx&utm_source=qr" target="_blank" 
+         class="bg-gray-600 hover:bg-pink-700 text-white flex items-center gap-2 px-5 py-2 rounded">
+        <i data-lucide="instagram" class="w-6 h-6"></i>
+        Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="py-6 bg-[#c6e5b1] text-white text-center">
+    <p>© <span id="year"></span> Toque de Luz — Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Atualiza ano do rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Função do menu mobile
+    function toggleCategoryForm() {
+      const form = document.getElementById('category-form');
+      form.classList.toggle('hidden');
+    }
+
+    // Inicializa ícones
+    lucide.createIcons();
+  </script>
+
+</body>
+  </html>
