@@ -1,64 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>✨️Toque de Luz✨️</title>
-
-  <!-- Favicon personalizado -->
-  <link rel="icon" href="kindpng_7207499.png" type="image/png">
-
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toque de Luz | Bem-estar e Energia Positiva</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="font-sans text-gray-800 scroll-smooth">
-
-  <!-- Cabeçalho -->
-  <header class="fixed top-0 left-0 w-full bg-[#c6e5b1]/80 backdrop-blur-lg shadow-sm z-50 h-16">
-    <div class="max-w-6xl mx-auto flex items-center justify-between p-1 h-full relative">
-
-      <!-- Botão do menu -->
-      <button id="menu-button" onclick="toggleCategoryForm()" 
-              class="text-green-700 font-semibold hover:text-green-900 text-lg">
-        ☰ Categorias
-      </button>
-
-      <!-- Título centralizado -->
-      <h1 class="text-3xl font-bold text-green-700 flex-grow text-center leading-none">
-        Toque de Luz
-      </h1>
-
-      <!-- Imagem -->
-      <img src="https://i.imgur.com/5kbgQXx.jpeg" 
-           alt="Toque de Luz" 
-           class="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-full">
-    </div>
-
-    <!-- Menu de navegação desktop removido -->
-    <!--
-    <nav class="hidden md:flex space-x-6 justify-center mt-1">
-      <a href="#inicio" class="hover:text-green-600">Início</a>
-      <a href="#sobre" class="hover:text-green-600">Sobre</a>
-      <a href="#servicos" class="hover:text-green-600">Serviços</a>
-      <a href="#contato" class="hover:text-green-600">Contato</a>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">🌿 Toque de Luz</div>
+      <ul class="nav-links">
+        <li><a href="#home">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#agendamento">Agendamento</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
     </nav>
-    -->
   </header>
 
-  <!-- Menu de Categorias -->
-  <div id="category-form" class="hidden fixed top-16 left-0 w-[200px] h-[calc(100vh-4rem)] bg-white z-50 overflow-auto shadow-lg p-6">
-    <ul class="flex flex-col space-y-4 text-lg">
-      <li><a href="#inicio" class="text-green-700 hover:text-green-900 py-2 block">Início</a></li>
-      <li><a href="#sobre" class="text-green-700 hover:text-green-900 py-2 block">Sobre</a></li>
-      <li><a href="#servicos" class="text-green-700 hover:text-green-900 py-2 block">Serviços</a></li>
-      <li><a href="#contato" class="text-green-700 hover:text-green-900 py-2 block">Contato</a></li>
-    </ul>
-  </div>
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Equilíbrio, Energia e Harmonia</h1>
+      <p>Transforme seu corpo e mente com o poder do toque e da energia positiva.</p>
+      <a href="#agendamento" class="btn">Agende sua sessão</a>
+    </div>
+  </section>
 
-  <!-- Início -->
-  <section id="inicio" 
-    class="relative h-screen flex flex-col justify-center items-center text-center px-6 pt-32 bg-cover bg-center bg-no-repeat"
-    style="background-image: url('https://i.imgur.com/Ze4QvMT.jpeg');">
+  <section id="sobre" class="sobre">
+    <h2>Sobre Nós</h2>
+    <p>Na Toque de Luz, acreditamos que o bem-estar vem de dentro. Oferecemos terapias naturais, massagens relaxantes e tratamentos com óleos essenciais para restaurar seu equilíbrio e vitalidade.</p>
+    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f3" alt="Massagem relaxante">
+  </section>
+
+  <section id="servicos" class="servicos">
+    <h2>Nossos Serviços</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1556228578-8b2e7b0f1b06" alt="">
+        <h3>Massagem Relaxante</h3>
+        <p>Reduza o estresse e renove sua energia com toques suaves e terapêuticos.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1606890737304-57d9459f2b31" alt="">
+        <h3>Terapia com Óleos Essenciais</h3>
+        <p>Experimente os benefícios dos óleos puros para corpo, mente e espírito.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07d" alt="">
+        <h3>Reiki Energético</h3>
+        <p>Harmonize sua energia vital e sinta-se renovado em todos os aspectos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="agendamento" class="agendamento">
+    <h2>Agende sua Sessão</h2>
+    <form id="formAgendamento">
+      <input type="text" id="nome" placeholder="Seu nome" required>
+      <input type="email" id="email" placeholder="Seu e-mail" required>
+      <input type="date" id="data" required>
+      <select id="servico">
+        <option value="Massagem Relaxante">Massagem Relaxante</option>
+        <option value="Terapia com Óleos Essenciais">Terapia com Óleos Essenciais</option>
+        <option value="Reiki Energético">Reiki Energético</option>
+      </select>
+      <button type="submit" class="btn">Confirmar Agendamento</button>
+    </form>
+    <p id="msgSucesso" class="sucesso"></p>
+  </section>
+
+  <section id="produtos" class="produtos">
+    <h2>Produtos Naturais</h2>
+    <div class="produtos-grid">
+      <div class="produto">
+        <img src="https://images.unsplash.com/photo-1599058917760-8bcb8e180f89" alt="">
+        <h3>Óleo Essencial Lavanda</h3>
+        <p>Calmante e equilibrante. 30ml</p>
+        <button onclick="adicionarAoCarrinho('Óleo Lavanda')">Adicionar</button>
+      </div>
+      <div class="produto">
+        <img src="https://images.unsplash.com/photo-1621391401980-27c13a6ad3b3" alt="">
+        <h3>Óleo Essencial Hortelã</h3>
+        <p>Refrescante e energizante. 30ml</p>
+        <button onclick="adicionarAoCarrinho('Óleo Hortelã')">Adicionar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="contato">
+    <h2>Contato</h2>
+    <p>🌸 Rua da Paz, 108 - São Paulo<br>📞 (11) 99999-9999<br>✉️ contato@toquedeluz.com</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Toque de Luz — Todos os direitos reservados.</p>
+  </footer>
+
+  <a href="https://wa.me/5599999999999" class="whatsapp-btn" target="_blank">💬</a>
+
+  <script src="script.js"></script>
+</body>
+</html>
