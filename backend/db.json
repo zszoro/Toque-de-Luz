@@ -1,0 +1,14 @@
+{
+  "usuarios": [
+    { "nome": "Admin", "email": "admin@toquedeluz.com", "senha": "1234" }
+  ],
+  "produtos": [
+    { "id": 1, "nome": "Óleo Essencial de Lavanda", "preco": 39.9, "imagem": "/assets/produtos/lavanda.jpg" },
+    { "id": 2, "nome": "Óleo de Eucalipto", "preco": 29.9, "imagem": "/assets/produtos/eucalipto.jpg" }
+  ],
+  "servicos": [
+    { "id": 1, "nome": "Massagem Relaxante", "preco": 120, "imagem": "/assets/servicos/massagem.jpg" },
+    { "id": 2, "nome": "Terapia com Reiki", "preco": 150, "imagem": "/assets/servicos/reiki.jpg" }
+  ],
+  "agendamentos": []
+}
