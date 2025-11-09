@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendamento | Toque de Luz</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">✨ Toque de Luz</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="produtos.html">Produtos</a>
+      <a href="agendamento.html" class="active">Agendamento</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <section class="agendamento">
+    <h2>Agende sua Sessão</h2>
+    <form id="formAgendamento">
+      <input type="text" id="nome" placeholder="Seu nome" required>
+      <input type="email" id="email" placeholder="Seu e-mail" required>
+      <select id="servico" required>
+        <option value="">Selecione o serviço</option>
+        <option>Reiki</option>
+        <option>Massagem Relaxante</option>
+        <option>Aromaterapia</option>
+      </select>
+      <input type="date" id="data" required>
+      <button type="submit">Agendar</button>
+    </form>
+  </section>
+</body>
+</html>
